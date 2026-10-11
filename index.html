@@ -1,0 +1,3419 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AKIRA — akira.tn | Streetwear Tunisie</title>
+  <meta name="description" content="Boutique officielle AKIRA (akira.tn). Streetwear tunisien minimaliste et direct. Hoodies, vestes, cargos, t-shirts conçus à Tunis. Livraison dans toute la Tunisie.">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AKIRA — akira.tn | Streetwear Tunisie">
+  <meta property="og:description" content="Catalogue officiel AKIRA. Pièces streetwear exclusives conçues à Tunis.">
+  <meta property="og:url" content="https://akira.tn/">
+
+  <!-- Typographie Helvetica Neue / Inter (propre, compacte, style 808.vision) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       VARIABLES CSS & BASE STYLE (SOBRE, TYPE 808.VISION)
+       ========================================================================== */
+    :root {
+      --color-white: #ffffff;
+      --color-black: #000000;
+      --color-gray-bg: #f5f5f5;
+      --color-gray-light: #fafafa;
+      --color-border: #e5e5e5;
+      --color-border-dark: #000000;
+      --color-muted: #737373;
+
+      --font-main: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Inter", Arial, sans-serif;
+      --font-size-base: 13px;
+      --letter-spacing-nav: 0.08em;
+      
+      --header-height: 88px;
+      --container-width: 1440px;
+      --transition-fade: 300ms ease;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html {
+      background-color: var(--color-white);
+      color: var(--color-black);
+      font-family: var(--font-main);
+      font-size: var(--font-size-base);
+      line-height: 1.4;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--color-white);
+      color: var(--color-black);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    body.no-scroll {
+      overflow: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    button {
+      font-family: inherit;
+      font-size: inherit;
+      background: none;
+      border: none;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    /* Focus visible accessible */
+    :focus-visible {
+      outline: 1px solid var(--color-black);
+      outline-offset: 2px;
+    }
+
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    @media (min-width: 1024px) {
+      .container {
+        padding-left: 32px;
+        padding-right: 32px;
+      }
+    }
+
+    /* ==========================================================================
+       EN-TÊTE FIXE (STYLE 808.VISION)
+       ========================================================================== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      background-color: var(--color-white);
+      border-bottom: 1px solid var(--color-border);
+      z-index: 100;
+      transition: transform 250ms ease;
+    }
+    .site-header.header-hidden {
+      transform: translateY(-100%);
+    }
+
+    .header-top {
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--color-border);
+      position: relative;
+    }
+
+    .header-left, .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: var(--letter-spacing-nav);
+      font-weight: 500;
+    }
+    @media (max-width: 640px) {
+      .header-left, .header-right {
+        gap: 10px;
+        font-size: 11px;
+      }
+    }
+
+    /* Gestion responsive du libellé du panier (évite le chevauchement sur téléphone) */
+    .cart-label-desktop {
+      display: none;
+    }
+    .cart-label-mobile {
+      display: inline;
+    }
+    @media (min-width: 640px) {
+      .cart-label-desktop {
+        display: inline;
+      }
+      .cart-label-mobile {
+        display: none;
+      }
+    }
+
+    .header-center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .logo-link {
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    @media (max-width: 480px) {
+      .logo-link {
+        font-size: 16px;
+        letter-spacing: 0.14em;
+      }
+    }
+
+    .menu-trigger-mobile {
+      display: inline-block;
+    }
+    @media (min-width: 1024px) {
+      .menu-trigger-mobile {
+        display: none;
+      }
+    }
+
+    /* Navigation sous le logo */
+    .header-nav {
+      display: none;
+      justify-content: center;
+      overflow-x: auto;
+      white-space: nowrap;
+      padding: 10px 0;
+      border-top: 1px solid transparent;
+    }
+    @media (min-width: 1024px) {
+      .header-nav {
+        display: flex;
+        gap: 22px;
+      }
+    }
+
+    .nav-link {
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      font-weight: 500;
+      color: var(--color-black);
+      padding: 2px 0;
+      position: relative;
+    }
+    .nav-link:hover, .nav-link.active {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+    .nav-link.sale-link {
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       PANNEAU DE RECHERCHE (DROPDOWN DEPUIS LE HAUT)
+       ========================================================================== */
+    .search-panel {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--color-white);
+      border-bottom: 1px solid var(--color-border-dark);
+      z-index: 200;
+      transform: translateY(-100%);
+      transition: transform 300ms ease;
+      padding: 20px 0 32px;
+    }
+    .search-panel.open {
+      transform: translateY(0);
+    }
+    @media (max-width: 768px) {
+      .search-panel {
+        height: 100dvh;
+        max-height: 100dvh;
+        padding: max(16px, env(safe-area-inset-top, 0px)) 0 max(24px, env(safe-area-inset-bottom, 0px));
+        display: flex;
+        flex-direction: column;
+      }
+      .search-panel .container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+      .search-results-grid {
+        flex: 1;
+        max-height: none !important;
+        padding-bottom: 60px;
+        -webkit-overflow-scrolling: touch;
+      }
+    }
+
+    .search-bar-inner {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      border-bottom: 1px solid var(--color-border-dark);
+      padding-bottom: 8px;
+    }
+    .search-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      font-family: inherit;
+      background: transparent;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .search-btn-action {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 8px;
+    }
+    .search-btn-action:hover {
+      text-decoration: underline;
+    }
+
+    .search-results-grid {
+      margin-top: 24px;
+      max-height: 55vh;
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    @media (min-width: 768px) {
+      .search-results-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+    }
+
+    /* ==========================================================================
+       MENU MOBILE LATÉRAL (DRAWER GAUCHE)
+       ========================================================================== */
+    .mobile-drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 300;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 300ms ease;
+    }
+    .mobile-drawer-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 85%;
+      max-width: 340px;
+      background-color: var(--color-white);
+      z-index: 310;
+      transform: translateX(-100%);
+      transition: transform 300ms ease;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid var(--color-border);
+    }
+    .mobile-drawer-overlay.open .mobile-drawer {
+      transform: translateX(0);
+    }
+
+    .drawer-header {
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      border-bottom: 1px solid var(--color-border);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .drawer-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .drawer-nav-section-title {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .drawer-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .drawer-nav-links a {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+    }
+
+    /* ==========================================================================
+       GRILLE PRODUITS & CARTES PRODUITS (RATIO 4:5)
+       ========================================================================== */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px 12px;
+    }
+    @media (min-width: 640px) {
+      .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px 18px;
+      }
+    }
+    @media (min-width: 1024px) {
+      .products-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 40px 20px;
+      }
+    }
+
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: var(--color-black);
+      position: relative;
+    }
+
+    .product-card-media {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      background-color: var(--color-gray-bg);
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .product-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%);
+      transition: opacity var(--transition-fade);
+    }
+    .product-img-hover {
+      opacity: 0;
+    }
+    .product-card:hover .product-img-hover {
+      opacity: 1;
+    }
+
+    /* Badge sold out ou save */
+    .card-badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background-color: var(--color-black);
+      color: var(--color-white);
+      padding: 3px 6px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+      z-index: 2;
+    }
+
+    .card-badge-soldout {
+      background-color: var(--color-white);
+      color: var(--color-black);
+      border: 1px solid var(--color-black);
+    }
+
+    .product-card-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .product-card-name {
+      font-size: 12.5px;
+      font-weight: 400;
+      line-height: 1.35;
+    }
+
+    .product-card-pricing {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12.5px;
+      font-weight: 500;
+    }
+    .old-price {
+      color: var(--color-muted);
+      text-decoration: line-through;
+      font-weight: 400;
+    }
+
+    /* ==========================================================================
+       BOUTONS STYLISÉS (INVERSION NOIR / BLANC)
+       ========================================================================== */
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 44px;
+      padding: 0 24px;
+      background-color: var(--color-black);
+      color: var(--color-white);
+      border: 1px solid var(--color-black);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background-color 200ms ease, color 200ms ease;
+      text-decoration: none;
+    }
+    .btn-action:hover {
+      background-color: var(--color-white);
+      color: var(--color-black);
+    }
+    .btn-action:disabled {
+      background-color: var(--color-gray-bg);
+      color: var(--color-muted);
+      border-color: var(--color-border);
+      cursor: not-allowed;
+    }
+
+    .btn-outline {
+      background-color: var(--color-white);
+      color: var(--color-black);
+      border: 1px solid var(--color-black);
+    }
+    .btn-outline:hover {
+      background-color: var(--color-black);
+      color: var(--color-white);
+    }
+
+    /* ==========================================================================
+       BANNIÈRE HOME & SECTIONS ACCUEIL
+       ========================================================================== */
+    .home-hero-banner {
+      width: 100%;
+      aspect-ratio: 21 / 9;
+      min-height: 320px;
+      background-color: var(--color-gray-bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--color-border);
+      position: relative;
+      overflow: hidden;
+    }
+    @media (max-width: 640px) {
+      .home-hero-banner {
+        aspect-ratio: 4 / 3;
+        min-height: 260px;
+      }
+    }
+
+    .home-hero-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%);
+    }
+
+    .home-hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .home-section-title {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-align: center;
+      margin: 48px 0 24px;
+    }
+
+    .view-all-wrap {
+      display: flex;
+      justify-content: center;
+      margin: 48px 0 72px;
+    }
+
+    /* ==========================================================================
+       PAGE COLLECTION
+       ========================================================================== */
+    .collection-header-row {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 32px 0 24px;
+      border-bottom: 1px solid var(--color-border);
+      margin-bottom: 32px;
+    }
+    @media (min-width: 768px) {
+      .collection-header-row {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .collection-title-box {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .collection-page-title {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .collection-count-label {
+      font-size: 12px;
+      color: var(--color-muted);
+    }
+
+    .collection-sort-select {
+      height: 36px;
+      padding: 0 12px;
+      border: 1px solid var(--color-border);
+      background: var(--color-white);
+      font-family: inherit;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* ==========================================================================
+       PAGE PRODUIT (PDP STYLE 808.VISION)
+       ========================================================================== */
+    .breadcrumb-bar {
+      padding: 16px 0;
+      font-size: 11.5px;
+      color: var(--color-muted);
+      border-bottom: 1px solid var(--color-border);
+      margin-bottom: 32px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .breadcrumb-bar a:hover {
+      color: var(--color-black);
+      text-decoration: underline;
+    }
+
+    .pdp-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      margin-bottom: 80px;
+    }
+    @media (min-width: 1024px) {
+      .pdp-grid {
+        grid-template-columns: 1.25fr 1fr;
+        gap: 60px;
+      }
+    }
+
+    /* Galerie 4 photos : horizontal swipe sur mobile, 2 colonnes sur desktop */
+    .pdp-gallery-wrap {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 8px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .pdp-gallery-wrap::-webkit-scrollbar {
+      display: none;
+    }
+    @media (min-width: 1024px) {
+      .pdp-gallery-wrap {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        overflow: visible;
+      }
+    }
+
+    .pdp-gallery-item {
+      flex: 0 0 88%;
+      scroll-snap-align: center;
+      aspect-ratio: 4 / 5;
+      background-color: var(--color-gray-bg);
+      position: relative;
+    }
+    @media (min-width: 1024px) {
+      .pdp-gallery-item {
+        flex: auto;
+      }
+    }
+    .pdp-gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%);
+    }
+
+    /* Indicateur de pagination photo sur mobile (ex: 1 / 4) */
+    .pdp-mobile-gallery-counter {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--color-muted);
+      margin-top: 10px;
+    }
+    @media (min-width: 1024px) {
+      .pdp-mobile-gallery-counter {
+        display: none;
+      }
+    }
+
+    /* Barre d'action fixe en bas sur mobile (style Converty : apparaît quand le cadre n'est plus visible) */
+    .pdp-sticky-bar {
+      display: none;
+    }
+    @media (max-width: 1023px) {
+      .pdp-sticky-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: var(--color-white);
+        border-top: 1px solid var(--color-border);
+        padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+        z-index: 95;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        transform: translateY(110%);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1), opacity 200ms ease;
+      }
+      .pdp-sticky-bar.visible {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .pdp-sticky-info {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+      }
+      .pdp-sticky-name {
+        font-size: 12px;
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 160px;
+      }
+      .pdp-sticky-price {
+        font-size: 11px;
+        color: var(--color-muted);
+      }
+      .pdp-sticky-btn {
+        height: 42px !important;
+        padding: 0 20px !important;
+        font-size: 11.5px !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.08em !important;
+        flex-shrink: 0;
+      }
+      .pdp-details-wrap {
+        padding-bottom: 70px;
+      }
+    }
+
+    /* Empêche le zoom automatique indésirable de Safari iOS sur focus input */
+    @media (max-width: 768px) {
+      .form-input, .form-select, .search-input, select, textarea {
+        font-size: 16px !important;
+      }
+    }
+
+    .pdp-details-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .pdp-title {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .pdp-price-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .size-select-section {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-top: 1px solid var(--color-border);
+      padding-top: 16px;
+    }
+
+    .size-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+    }
+    .size-guide-link {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .size-buttons-grid {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .size-btn {
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--color-border);
+      background-color: var(--color-white);
+      font-size: 12px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 150ms ease;
+    }
+    .size-btn.unique-size {
+      width: auto;
+      padding: 0 16px;
+    }
+    .size-btn:hover:not(:disabled) {
+      border-color: var(--color-black);
+    }
+    .size-btn.selected {
+      background-color: var(--color-black);
+      color: var(--color-white);
+      border-color: var(--color-black);
+    }
+    .size-btn:disabled {
+      text-decoration: line-through;
+      color: var(--color-muted);
+      background-color: var(--color-gray-bg);
+      cursor: not-allowed;
+      border-color: var(--color-border);
+    }
+
+    .qty-select-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+    }
+    .qty-stepper {
+      display: inline-flex;
+      border: 1px solid var(--color-border);
+      height: 38px;
+    }
+    .qty-btn {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .qty-btn:hover {
+      background-color: var(--color-gray-bg);
+    }
+    .qty-value {
+      width: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      border-left: 1px solid var(--color-border);
+      border-right: 1px solid var(--color-border);
+    }
+
+    .pdp-specs-box {
+      font-size: 12px;
+      line-height: 1.6;
+      color: #333;
+      border-top: 1px solid var(--color-border);
+      padding-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* ==========================================================================
+       CADRE DE COMMANDE DIRECTE STYLE CONVERTY (PAGE PRODUIT)
+       ========================================================================== */
+    .converty-order-box {
+      border: 1px solid var(--color-black);
+      background-color: var(--color-white);
+      padding: 20px;
+      margin-top: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
+    }
+    @media (max-width: 640px) {
+      .converty-order-box {
+        padding: 16px;
+      }
+    }
+
+    .converty-box-header {
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 12px;
+    }
+    .converty-box-title {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .converty-box-subtitle {
+      font-size: 11.5px;
+      color: var(--color-muted);
+    }
+
+    .converty-form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 12px;
+    }
+    .converty-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* Champ Téléphone avec indicatif +216 */
+    .phone-input-wrap {
+      display: flex;
+      align-items: stretch;
+      width: 100%;
+    }
+    .phone-prefix {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--color-gray-bg);
+      border: 1px solid var(--color-border);
+      border-right: none;
+      padding: 0 12px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--color-black);
+      user-select: none;
+    }
+    .phone-input {
+      flex: 1;
+      height: 42px;
+      border: 1px solid var(--color-border);
+      padding: 0 12px;
+      font-family: inherit;
+      font-size: 12.5px;
+      background-color: var(--color-white);
+      outline: none;
+    }
+    .phone-input:focus {
+      border-color: var(--color-black);
+    }
+
+    /* Récapitulatif dans le cadre */
+    .converty-recap-table {
+      background-color: var(--color-gray-bg);
+      border: 1px solid var(--color-border);
+      padding: 12px 14px;
+      font-size: 11.5px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .converty-recap-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .converty-recap-row.total-row {
+      border-top: 1px solid var(--color-border);
+      padding-top: 8px;
+      font-size: 12.5px;
+      font-weight: 600;
+    }
+
+    /* Choix de livraison & paiement */
+    .converty-delivery-option {
+      border: 1px solid var(--color-border);
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      background-color: var(--color-white);
+      margin-bottom: 10px;
+    }
+    .converty-delivery-radio {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+    }
+    .converty-badge-cod {
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border: 1px solid var(--color-black);
+      padding: 2px 6px;
+      font-weight: 600;
+    }
+
+    /* Boutons Converty */
+    .converty-submit-btn {
+      width: 100%;
+      height: 52px;
+      font-size: 13px !important;
+      font-weight: 600 !important;
+      letter-spacing: 0.08em !important;
+      margin-bottom: 8px;
+    }
+    .converty-add-cart-btn {
+      width: 100%;
+      height: 44px;
+      background-color: var(--color-white);
+      color: var(--color-black);
+      border: 1px solid var(--color-border);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 150ms ease;
+    }
+    .converty-add-cart-btn:hover {
+      border-color: var(--color-black);
+      background-color: var(--color-gray-bg);
+    }
+
+    /* Lignes de réassurance */
+    .converty-trust-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      border-top: 1px solid var(--color-border);
+      padding-top: 12px;
+      font-size: 11px;
+      color: #333333;
+    }
+    .converty-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .converty-trust-bullet {
+      width: 4px;
+      height: 4px;
+      background-color: var(--color-black);
+      flex-shrink: 0;
+    }
+    .converty-whatsapp-wrap {
+      font-size: 11.5px;
+      padding-top: 4px;
+    }
+    .converty-whatsapp-link {
+      text-decoration: underline;
+      font-weight: 500;
+      color: var(--color-black);
+    }
+    .converty-whatsapp-link:hover {
+      text-decoration: none;
+    }
+
+    /* Message d'erreur souligné sans couleur */
+    .converty-error-text {
+      font-size: 11px;
+      text-decoration: underline;
+      color: var(--color-black);
+      display: none;
+      margin-top: 3px;
+    }
+    .has-error .converty-error-text {
+      display: block;
+    }
+    .has-error .form-input, 
+    .has-error .phone-input, 
+    .has-error .form-select {
+      border-color: var(--color-black);
+      background-color: #fafafa;
+    }
+
+    /* Boîte de confirmation de commande directe */
+    .converty-success-box {
+      border: 1px solid var(--color-black);
+      background-color: var(--color-white);
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 6px;
+    }
+    .converty-success-header {
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 12px;
+    }
+    .converty-success-title {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .converty-success-order-num {
+      font-family: monospace;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    /* ==========================================================================
+       PAGE CART (PANIER PLEINE PAGE)
+       ========================================================================== */
+    .cart-page-wrap {
+      max-width: 900px;
+      margin: 40px auto 80px;
+    }
+    .cart-page-title {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+    }
+
+    .cart-item-row {
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--color-border);
+      align-items: center;
+    }
+    @media (max-width: 540px) {
+      .cart-item-row {
+        grid-template-columns: 72px 1fr;
+        gap: 12px;
+      }
+      .cart-item-row > div:last-child {
+        grid-column: 1 / -1;
+        display: flex;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding-top: 10px;
+        border-top: 1px dashed var(--color-border);
+      }
+    }
+
+    .cart-thumb {
+      width: 80px;
+      aspect-ratio: 4 / 5;
+      background-color: var(--color-gray-bg);
+      object-fit: cover;
+      filter: grayscale(100%);
+    }
+    @media (max-width: 540px) {
+      .cart-thumb {
+        width: 72px;
+      }
+    }
+
+    .cart-item-name {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+    .cart-item-meta {
+      font-size: 12px;
+      color: var(--color-muted);
+      margin-bottom: 8px;
+    }
+    .cart-remove-link {
+      font-size: 11px;
+      text-decoration: underline;
+      cursor: pointer;
+      color: var(--color-muted);
+      padding: 4px 0;
+      display: inline-block;
+    }
+    .cart-remove-link:hover {
+      color: var(--color-black);
+    }
+
+    .cart-summary-card {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+    }
+    @media (max-width: 640px) {
+      .cart-summary-card {
+        align-items: stretch;
+      }
+      .cart-summary-card .btn-action {
+        max-width: none !important;
+        width: 100% !important;
+      }
+    }
+
+    .cart-subtotal-text {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    .cart-shipping-note {
+      font-size: 11.5px;
+      color: var(--color-muted);
+    }
+
+    /* ==========================================================================
+       PAGE CHECKOUT (COMMANDE TUNISIE 24 GOUVERNORATS)
+       ========================================================================== */
+    .checkout-wrap {
+      max-width: 1040px;
+      margin: 32px auto 80px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    @media (min-width: 900px) {
+      .checkout-wrap {
+        grid-template-columns: 1.3fr 1fr;
+      }
+    }
+
+    .checkout-section-title {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .form-label {
+      font-size: 11.5px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .form-input, .form-select {
+      height: 42px;
+      padding: 0 12px;
+      border: 1px solid var(--color-border);
+      font-family: inherit;
+      font-size: 12.5px;
+      outline: none;
+      background-color: var(--color-white);
+    }
+    .form-input:focus, .form-select:focus {
+      border-color: var(--color-black);
+    }
+    .form-error-msg {
+      font-size: 11px;
+      text-decoration: underline;
+      color: var(--color-black);
+      display: none;
+    }
+    .has-error .form-input, .has-error .form-select {
+      border-color: var(--color-black);
+    }
+    .has-error .form-error-msg {
+      display: block;
+    }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    @media (min-width: 600px) {
+      .form-row-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .payment-option-card {
+      border: 1px solid var(--color-border);
+      padding: 14px;
+      cursor: pointer;
+      margin-bottom: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .payment-option-card.selected {
+      border-color: var(--color-black);
+      background-color: var(--color-gray-bg);
+    }
+
+    .checkout-summary-box {
+      background-color: var(--color-gray-bg);
+      border: 1px solid var(--color-border);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* ==========================================================================
+       PAGES TEXTES : VIP, CONTACT, SIZE GUIDE, TRACK PARCEL, LEGAL
+       ========================================================================== */
+    .text-page-wrap {
+      max-width: 760px;
+      margin: 40px auto 80px;
+    }
+    .text-page-title {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 14px;
+      margin-bottom: 24px;
+    }
+    .text-content-body {
+      font-size: 12.5px;
+      line-height: 1.7;
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .size-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      font-size: 12px;
+    }
+    .size-table th, .size-table td {
+      border: 1px solid var(--color-border);
+      padding: 10px;
+      text-align: left;
+    }
+    .size-table th {
+      background-color: var(--color-gray-bg);
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       COOKIES BANNER (DISCRET EN BAS À GAUCHE SUR DESKTOP, PLEINE LARGEUR SUR MOBILE)
+       ========================================================================== */
+    .cookies-banner {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      max-width: 300px;
+      background-color: var(--color-white);
+      border: 1px solid var(--color-border-dark);
+      padding: 16px;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 11.5px;
+      line-height: 1.4;
+    }
+    @media (max-width: 640px) {
+      .cookies-banner {
+        bottom: 0;
+        left: 0;
+        right: 0;
+        max-width: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
+        padding: 14px 20px calc(14px + env(safe-area-inset-bottom, 0px));
+      }
+    }
+    .cookies-title {
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .cookies-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-top: 4px;
+    }
+
+    /* ==========================================================================
+       PIED DE PAGE (STYLE 808.VISION)
+       ========================================================================== */
+    .site-footer {
+      border-top: 1px solid var(--color-border);
+      padding-top: 64px;
+      padding-bottom: 32px;
+      margin-top: auto;
+      background-color: var(--color-white);
+    }
+
+    .footer-columns-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+    @media (min-width: 640px) {
+      .footer-columns-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (min-width: 1024px) {
+      .footer-columns-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .footer-col-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .footer-links-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 11.5px;
+      letter-spacing: 0.04em;
+    }
+    .footer-links-list a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-bottom-row {
+      border-top: 1px solid var(--color-border);
+      padding-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--color-muted);
+    }
+    @media (min-width: 768px) {
+      .footer-bottom-row {
+        flex-direction: row;
+      }
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 18px;
+    }
+    .footer-socials a {
+      color: var(--color-black);
+    }
+    .footer-socials a:hover {
+      text-decoration: underline;
+    }
+
+    /* ==========================================================================
+       ACCESSIBILITÉ PREFERS-REDUCED-MOTION
+       ========================================================================== */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.001ms !important;
+        animation-duration: 0.001ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       EN-TÊTE
+       ========================================================================== -->
+  <header id="siteHeader" class="site-header">
+    <div class="container">
+      <div class="header-top">
+        <!-- Gauche : Search & Menu mobile -->
+        <div class="header-left">
+          <button id="mobileMenuOpenBtn" class="menu-trigger-mobile" aria-label="Ouvrir le menu">MENU</button>
+          <button id="searchOpenBtn" aria-label="Rechercher des produits">SEARCH</button>
+        </div>
+
+        <!-- Centre : Logo AKIRA simple texte -->
+        <div class="header-center">
+          <a href="#/" class="logo-link" aria-label="AKIRA page d'accueil">AKIRA</a>
+        </div>
+
+        <!-- Droite : Cart, My Account, VIP -->
+        <div class="header-right">
+          <a href="#/cart" id="headerCartLink" aria-label="Voir le panier">
+            <span class="cart-label-desktop">CART 0,00 TND (0)</span>
+            <span class="cart-label-mobile">CART (0)</span>
+          </a>
+          <a href="#/account" style="display: none;" class="desktop-only-link">MY ACCOUNT</a>
+          <a href="#/vip">VIP</a>
+        </div>
+      </div>
+
+      <!-- Navigation sous le logo -->
+      <nav class="header-nav" aria-label="Navigation principale">
+        <a href="#/" class="nav-link" data-route="">HOME</a>
+        <a href="#/collections/all" class="nav-link" data-route="all">ALL</a>
+        <a href="#/collections/new-collection" class="nav-link" data-route="new-collection">NEW</a>
+        <a href="#/collections/sweats-hoodies-zip" class="nav-link" data-route="sweats-hoodies-zip">HOODIES / ZIP</a>
+        <a href="#/collections/pants" class="nav-link" data-route="pants">PANTS</a>
+        <a href="#/collections/short" class="nav-link" data-route="short">SHORT</a>
+        <a href="#/collections/t-shirts" class="nav-link" data-route="t-shirts">T-SHIRTS</a>
+        <a href="#/collections/knits" class="nav-link" data-route="knits">KNIT</a>
+        <a href="#/collections/jackets" class="nav-link" data-route="jackets">JACKETS</a>
+        <a href="#/collections/accessories" class="nav-link" data-route="accessories">ACCESSORIES</a>
+        <a href="#/collections/sales" class="nav-link sale-link" data-route="sales">SALES</a>
+        <a href="#/contact" class="nav-link" data-route="contact">CONTACT</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       PANNEAU RECHERCHE EN DÉROULANT
+       ========================================================================== -->
+  <div id="searchPanel" class="search-panel" role="dialog" aria-modal="true" aria-label="Recherche">
+    <div class="container">
+      <div class="search-bar-inner">
+        <input type="text" id="searchInput" class="search-input" placeholder="SEARCH PRODUCTS..." autocomplete="off">
+        <button id="searchClearBtn" class="search-btn-action">CLEAR</button>
+        <button id="searchCloseBtn" class="search-btn-action">CLOSE [X]</button>
+      </div>
+      <div id="searchResultsGrid" class="search-results-grid"></div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       TIROIR NAVIGATION MOBILE
+       ========================================================================== -->
+  <div id="mobileDrawerOverlay" class="mobile-drawer-overlay" role="dialog" aria-modal="true" aria-label="Menu navigation">
+    <div class="mobile-drawer">
+      <div class="drawer-header">
+        <span>NAVIGATION</span>
+        <button id="mobileMenuCloseBtn" aria-label="Fermer le menu">[X]</button>
+      </div>
+      <div class="drawer-content">
+        <div>
+          <div class="drawer-nav-section-title">COLLECTIONS</div>
+          <div class="drawer-nav-links">
+            <a href="#/" onclick="closeMobileDrawer()">HOME</a>
+            <a href="#/collections/all" onclick="closeMobileDrawer()">ALL</a>
+            <a href="#/collections/new-collection" onclick="closeMobileDrawer()">NEW</a>
+            <a href="#/collections/sweats-hoodies-zip" onclick="closeMobileDrawer()">HOODIES / ZIP</a>
+            <a href="#/collections/pants" onclick="closeMobileDrawer()">PANTS</a>
+            <a href="#/collections/short" onclick="closeMobileDrawer()">SHORT</a>
+            <a href="#/collections/t-shirts" onclick="closeMobileDrawer()">T-SHIRTS</a>
+            <a href="#/collections/knits" onclick="closeMobileDrawer()">KNIT</a>
+            <a href="#/collections/jackets" onclick="closeMobileDrawer()">JACKETS</a>
+            <a href="#/collections/accessories" onclick="closeMobileDrawer()">ACCESSORIES</a>
+            <a href="#/collections/sales" onclick="closeMobileDrawer()">SALES</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="drawer-nav-section-title">SUPPORT</div>
+          <div class="drawer-nav-links">
+            <a href="#/contact" onclick="closeMobileDrawer()">CONTACT</a>
+            <a href="#/track-parcel" onclick="closeMobileDrawer()">TRACK PARCEL</a>
+            <a href="#/size-guide" onclick="closeMobileDrawer()">SIZE GUIDE</a>
+            <a href="#/vip" onclick="closeMobileDrawer()">VIP ACCESS</a>
+          </div>
+        </div>
+
+        <div>
+          <div class="drawer-nav-section-title">LEGAL</div>
+          <div class="drawer-nav-links">
+            <a href="#/legal/terms-of-sale" onclick="closeMobileDrawer()">TERMS OF SALE</a>
+            <a href="#/legal/refund-policy" onclick="closeMobileDrawer()">REFUND POLICY</a>
+            <a href="#/legal/privacy-policy" onclick="closeMobileDrawer()">PRIVACY POLICY</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       ZONE CONTENU ROUTÉ (#/...)
+       ========================================================================== -->
+  <main id="appMain" role="main"></main>
+
+  <!-- ==========================================================================
+       BANDEAU COOKIES DISCRET (EN BAS À GAUCHE)
+       ========================================================================== -->
+  <div id="cookiesBanner" class="cookies-banner">
+    <p class="cookies-title">Are Cookies OK?</p>
+    <p>We use cookies to improve your browsing experience.</p>
+    <div class="cookies-actions">
+      <button class="btn-action" style="height: 30px; padding: 0 14px; font-size: 11px;" onclick="acceptCookies()">Accept</button>
+      <a href="#/legal/privacy-policy" style="text-decoration: underline;">Learn more</a>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       PIED DE PAGE (STYLE 808.VISION)
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-columns-grid">
+        <!-- NAVIGATION -->
+        <div>
+          <h4 class="footer-col-title">NAVIGATION</h4>
+          <ul class="footer-links-list">
+            <li><a href="#/vip">VIP</a></li>
+            <li><a href="#/collections/all">ALL</a></li>
+            <li><a href="#/collections/new-collection">NEW</a></li>
+            <li><a href="#/collections/sweats-hoodies-zip">HOODIES / ZIP</a></li>
+            <li><a href="#/collections/pants">PANTS</a></li>
+            <li><a href="#/collections/short">SHORT</a></li>
+            <li><a href="#/collections/t-shirts">T-SHIRTS</a></li>
+            <li><a href="#/collections/knits">KNIT</a></li>
+            <li><a href="#/collections/jackets">JACKETS</a></li>
+            <li><a href="#/collections/accessories">ACCESSORIES</a></li>
+            <li><a href="#/collections/sales">SALES</a></li>
+          </ul>
+        </div>
+
+        <!-- LEGAL -->
+        <div>
+          <h4 class="footer-col-title">LEGAL</h4>
+          <ul class="footer-links-list">
+            <li><a href="#/legal/notice">LEGAL NOTICE</a></li>
+            <li><a href="#/legal/terms-of-sale">TERMS OF SALE</a></li>
+            <li><a href="#/legal/terms-of-use">TERMS OF USE</a></li>
+            <li><a href="#/legal/refund-policy">REFUND POLICY</a></li>
+            <li><a href="#/legal/privacy-policy">PRIVACY POLICY</a></li>
+          </ul>
+        </div>
+
+        <!-- SUPPORT -->
+        <div>
+          <h4 class="footer-col-title">SUPPORT</h4>
+          <ul class="footer-links-list">
+            <li><a href="#/contact">CONTACT</a></li>
+            <li><a href="#/track-parcel">TRACK PARCEL</a></li>
+            <li><a href="#/size-guide">SIZE GUIDE</a></li>
+            <li><a href="#/account">MY ACCOUNT</a></li>
+          </ul>
+        </div>
+
+        <!-- PAYMENT -->
+        <div>
+          <h4 class="footer-col-title">PAYMENT</h4>
+          <ul class="footer-links-list" style="color: var(--color-muted);">
+            <li>CASH ON DELIVERY (PAIEMENT À LA LIVRAISON)</li>
+            <li>CARTE BANCAIRE NATIONALE (CLICTOPAY)</li>
+            <li>VISA</li>
+            <li>MASTERCARD</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-row">
+        <span>© AKIRA 2026 — AKIRA.TN. ALL RIGHTS RESERVED.</span>
+        <div class="footer-socials">
+          <a href="https://x.com" target="_blank" rel="noopener">X</a>
+          <a href="https://tiktok.com" target="_blank" rel="noopener">TIKTOK</a>
+          <a href="https://instagram.com" target="_blank" rel="noopener">INSTAGRAM</a>
+          <a href="https://youtube.com" target="_blank" rel="noopener">YOUTUBE</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       DONNÉES DU CATALOGUE AKIRA (20 PRODUITS RÉALISTES AVEC PHOTOS EXEMPLES)
+       ========================================================================== -->
+  <script>
+    // Photothèque réelle streetwear AKIRA monochrome
+    const IMGS = {
+      hero: '/src/assets/images/akira_hero_editorial_1791748641270.jpg',
+      hoodie: '/src/assets/images/akira_product_hoodie_1791748653674.jpg',
+      cargo: '/src/assets/images/akira_product_cargo_1791748664189.jpg',
+      craft: '/src/assets/images/akira_editorial_craft_1791748674132.jpg',
+      tshirt: '/src/assets/images/akira_photo_tshirt_1791750428985.jpg',
+      jacket: '/src/assets/images/akira_photo_jacket_1791750441283.jpg',
+      knit: '/src/assets/images/akira_photo_knit_1791750451087.jpg',
+      short: '/src/assets/images/akira_photo_short_1791750462538.jpg',
+      acc: '/src/assets/images/akira_photo_accessory_1791750472532.jpg'
+    };
+
+    const PRODUCTS = [
+      {
+        id: 'zip-hoodie-akira-noir',
+        name: 'Zip Hoodie Akira - Noir',
+        category: 'sweats-hoodies-zip',
+        isNew: true,
+        price: 249.00,
+        oldPrice: null,
+        soldOut: false,
+        composition: '100% heavy cotton, 460 gsm.',
+        model: 'Model: 75 kg, 182 cm, wears a size L.',
+        sizes: ['S', 'M', 'L', 'XL'],
+        availableSizes: ['S', 'M', 'L'],
+        images: [IMGS.hoodie, IMGS.craft, IMGS.hero, IMGS.tshirt]
+      },
+      {
+        id: 'cargo-216-noir',
+        name: 'Cargo 216 - Noir',
+        category: 'pants',
+        isNew: true,
+        price: 219.00,
+        oldPrice: null,
+        soldOut: false,
+        composition: '98% cotton gabardine, 2% elastane.',
+        model: 'Model: 74 kg, 180 cm, wears a size M.',
+        sizes: ['XS', 'S', 'M', 'L', 'XL'],
+        availableSizes: ['XS', 'S', 'M', 'L', 'XL'],
+        images: [IMGS.cargo, IMGS.hero, IMGS.craft, IMGS.short]
+      },
+      {
+        id: 'jacket-tunis-black',
+        name: 'Jacket Tunis - Black',
+        category: 'jackets',
+        isNew: true,
+        price: 329.00,
+        oldPrice: null,
+        soldOut: false,
+        composition: '100% nylon ripstop shell, cupro matte lining.',
+        model: 'Model: 78 kg, 184 cm, wears a size L.',
+        sizes: ['S', 'M', 'L'],
+        availableSizes: ['S', 'M', 'L'],
+        images: [IMGS.jacket, IMGS.hero, IMGS.hoodie, IMGS.craft]
+      },
+      {
+        id: 'heavy-tee-216-white',
+        name: 'Heavy Tee 216 - White',
+        category: 't-shirts',
+        isNew: true,
+        price: 99.00,
+        oldPrice: null,
+        soldOut: false,
+        composition: '100% combed cotton jersey, 280 gsm.',
+        model: 'Model: 70 kg, 178 cm, wears a size M.',
+        sizes: ['XS', 'S', 'M', 'L', 'XL'],
+        availableSizes: ['XS', 'S', 'M', 'L'],
+        images: [IMGS.tshirt, IMGS.craft, IMGS.hoodie, IMGS.acc]
+      },
+      {
+        id: 'hoodie-signature-ash-grey',
+        name: 'Hoodie Signature - Ash Grey',
+        category: 'sweats-hoodies-zip',
+        isNew: false,
+        price: 189.00,
+        oldPrice: 229.00,
+        soldOut: false,
+        composition: '80% organic cotton, 20% recycled poly, 420 gsm.',
+        model: 'Model: 74 kg, 180 cm, wears a size M.',
+        sizes: ['S', 'M', 'L', 'XL'],
+        availableSizes: ['M', 'L'],
+        images: [IMGS.hoodie, IMGS.craft, IMGS.hero, IMGS.tshirt]
+      },
+      {
+        id: 'knit-medina-noir',
+        name: 'Knit Medina - Noir',
+        category: 'knits',
+        isNew: true,
+        price: 259.00,
+        oldPrice: null,
+        soldOut: false,
+        composition: '70% extrafine merino wool, 30% organic cotton.',
+        model: 'Model: 75 kg, 182 cm, wears a size L.',
+        sizes: ['S', 'M', 'L'],
+        availableSizes: ['S', 'M'],
+        images: [IMGS.knit, IMGS.craft, IMGS.hero, IMGS.jacket]
+      },
+      {
+        id: 'short-fleece-216-black',
+        name: 'Short Fleece 216 - Black',
+        category: 'short',
+        isNew: false,
+        price: 119.00,
+        oldPrice: 149.00,
+        soldOut: false,
+        composition: '100% French Terry cotton, 380 gsm.',
+        model: 'Model: 72 kg, 179 cm, wears a size M.',
+        sizes: ['S', 'M', 'L', 'XL'],
+        availableSizes: ['S', 'M', 'L', 'XL'],
+        images: [IMGS.short, IMGS.tshirt, IMGS.cargo, IMGS.craft]
+      },
+      {
+        id: 'heavy-tee-boxy-noir',
+        name: 'Heavy Tee Boxy - Noir',
+        category: 't-shirts',
+        isNew: true,
+        price: 89.00,
+        oldPrice: null,
+        soldOut: false,
+        composition: '100% heavy carded cotton, 290 gsm.',
+        model: 'Model: 74 kg, 180 cm, wears a size M.',
+        sizes: ['XS', 'S', 'M', 'L', 'XL'],
+        availableSizes: ['XS', 'S', 'M', 'L', 'XL'],
+        images: [IMGS.tshirt, IMGS.craft, IMGS.hoodie, IMGS.hero]
+      },
+      {
+        id: 'pleated-pant-tunis-anthracite',
+        name: 'Pleated Pant Tunis - Anthracite',
+        category: 'pants',
+        isNew: false,
+        price: 229.00,
+        oldPrice: null,
+        soldOut: true,
+        composition: '65% wool blend, 35% technical twill.',
+        model: 'Model: 76 kg, 183 cm, wears a size L.',
+        sizes: ['S', 'M', 'L'],
+        availableSizes: [],
+        images: [IMGS.cargo, IMGS.hero, IMGS.craft, IMGS.short]
+      },
+      {
+        id: 'work-jacket-gabardine-black',
+        name: 'Work Jacket Gabardine - Black',
+        category: 'jackets',
+        isNew: true,
+        price: 299.00,
+        oldPrice: null,
+        soldOut: false,
+        composition: '100% high-density cotton gabardine, 360 gsm.',
+        model: 'Model: 75 kg, 182 cm, wears a size L.',
+        sizes: ['S', 'M', 'L', 'XL'],
+        availableSizes: ['S', 'M', 'L'],
+        images: [IMGS.jacket, IMGS.hero, IMGS.hoodie, IMGS.craft]
+      },
+      {
+        id: 'canvas-tote-bag-akira',
+        name: 'Canvas Tote Bag Akira - Noir',
+        category: 'accessories',
+        isNew: false,
+        price: 69.00,
+        oldPrice: null,
+        soldOut: false,
+        composition: '100% heavy canvas cotton 16 oz, reinforced handles.',
+        model: 'Unique Size (45 x 40 cm).',
+        sizes: ['Unique'],
+        availableSizes: ['Unique'],
+        images: [IMGS.acc, IMGS.craft, IMGS.hoodie, IMGS.tshirt]
+      },
+      {
+        id: 'beanie-merino-ribbed-black',
+        name: 'Beanie Merino Ribbed - Black',
+        category: 'accessories',
+        isNew: true,
+        price: 59.00,
+        oldPrice: 79.00,
+        soldOut: false,
+        composition: '100% fine merino wool, tight 7-gauge knit.',
+        model: 'One size fits all.',
+        sizes: ['Unique'],
+        availableSizes: ['Unique'],
+        images: [IMGS.acc, IMGS.knit, IMGS.craft, IMGS.hero]
+      },
+      {
+        id: 'oversized-zip-hoodie-washed-black',
+        name: 'Oversized Zip Hoodie - Washed Black',
+        category: 'sweats-hoodies-zip',
+        isNew: false,
+        price: 239.00,
+        oldPrice: 279.00,
+        soldOut: false,
+        composition: '100% organic cotton loopback, enzyme washed.',
+        model: 'Model: 74 kg, 180 cm, wears a size M.',
+        sizes: ['S', 'M', 'L', 'XL'],
+        availableSizes: ['M', 'L', 'XL'],
+        images: [IMGS.hoodie, IMGS.craft, IMGS.hero, IMGS.tshirt]
+      },
+      {
+        id: 'nylon-track-pant-noir',
+        name: 'Nylon Track Pant - Noir',
+        category: 'pants',
+        isNew: true,
+        price: 199.00,
+        oldPrice: null,
+        soldOut: false,
+        composition: '100% technical matte nylon, breathable mesh lining.',
+        model: 'Model: 73 kg, 180 cm, wears a size M.',
+        sizes: ['S', 'M', 'L'],
+        availableSizes: ['S', 'M', 'L'],
+        images: [IMGS.cargo, IMGS.short, IMGS.hero, IMGS.craft]
+      },
+      {
+        id: 'graphic-tee-medina-white',
+        name: 'Graphic Tee Medina - White',
+        category: 't-shirts',
+        isNew: false,
+        price: 79.00,
+        oldPrice: 109.00,
+        soldOut: false,
+        composition: '100% combed cotton 260 gsm, silkscreen print.',
+        model: 'Model: 72 kg, 178 cm, wears a size M.',
+        sizes: ['XS', 'S', 'M', 'L'],
+        availableSizes: ['S', 'M', 'L'],
+        images: [IMGS.tshirt, IMGS.craft, IMGS.hoodie, IMGS.acc]
+      },
+      {
+        id: 'cargo-short-ripstop-black',
+        name: 'Cargo Short Ripstop - Black',
+        category: 'short',
+        isNew: true,
+        price: 139.00,
+        oldPrice: null,
+        soldOut: false,
+        composition: '100% cotton ripstop, military spec.',
+        model: 'Model: 75 kg, 181 cm, wears a size M.',
+        sizes: ['S', 'M', 'L', 'XL'],
+        availableSizes: ['S', 'M', 'L'],
+        images: [IMGS.short, IMGS.tshirt, IMGS.cargo, IMGS.craft]
+      },
+      {
+        id: 'half-zip-knit-anthracite',
+        name: 'Half Zip Knit - Anthracite',
+        category: 'knits',
+        isNew: false,
+        price: 249.00,
+        oldPrice: 289.00,
+        soldOut: false,
+        composition: '50% merino wool, 50% technical acrylic.',
+        model: 'Model: 76 kg, 183 cm, wears a size L.',
+        sizes: ['S', 'M', 'L'],
+        availableSizes: ['M', 'L'],
+        images: [IMGS.knit, IMGS.craft, IMGS.jacket, IMGS.hero]
+      },
+      {
+        id: 'tactical-vest-216-black',
+        name: 'Tactical Vest 216 - Black',
+        category: 'jackets',
+        isNew: true,
+        price: 219.00,
+        oldPrice: null,
+        soldOut: false,
+        composition: 'Cordura 500D nylon, reinforced webbing straps.',
+        model: 'Adjustable size.',
+        sizes: ['Unique'],
+        availableSizes: ['Unique'],
+        images: [IMGS.jacket, IMGS.cargo, IMGS.craft, IMGS.hero]
+      },
+      {
+        id: 'socks-pack-3-akira',
+        name: 'Socks Pack (3) Akira - Monochrome',
+        category: 'accessories',
+        isNew: false,
+        price: 49.00,
+        oldPrice: null,
+        soldOut: false,
+        composition: '85% combed cotton, 12% polyamide, 3% elastane.',
+        model: 'One size fits all (EU 40-45).',
+        sizes: ['Unique'],
+        availableSizes: ['Unique'],
+        images: [IMGS.acc, IMGS.craft, IMGS.tshirt, IMGS.hoodie]
+      },
+      {
+        id: 'hoodie-box-fit-noir',
+        name: 'Hoodie Box Fit - Noir',
+        category: 'sweats-hoodies-zip',
+        isNew: false,
+        price: 199.00,
+        oldPrice: null,
+        soldOut: true,
+        composition: '100% heavyweight cotton, 480 gsm.',
+        model: 'Model: 75 kg, 182 cm, wears a size L.',
+        sizes: ['S', 'M', 'L', 'XL'],
+        availableSizes: [],
+        images: [IMGS.hoodie, IMGS.craft, IMGS.hero, IMGS.tshirt]
+      }
+    ];
+
+    // Générateur de placeholders SVG 4:5 avec typographie sobre
+    function generatePlaceholderSVG(title, subtitle, bgColor = '#F5F5F5') {
+      const svg = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000">
+          <rect width="100%" height="100%" fill="${bgColor}"/>
+          <line x1="40" y1="40" x2="760" y2="40" stroke="#E5E5E5" stroke-width="1"/>
+          <line x1="40" y1="960" x2="760" y2="960" stroke="#E5E5E5" stroke-width="1"/>
+          <line x1="40" y1="40" x2="40" y2="960" stroke="#E5E5E5" stroke-width="1"/>
+          <line x1="760" y1="40" x2="760" y2="960" stroke="#E5E5E5" stroke-width="1"/>
+          <text x="50%" y="47%" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="20" font-weight="600" fill="#000000" letter-spacing="3">${title}</text>
+          <text x="50%" y="52%" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="13" font-weight="400" fill="#737373" letter-spacing="2">${subtitle}</text>
+          <text x="50%" y="93%" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" font-weight="500" fill="#888888" letter-spacing="3">AKIRA.TN · 4:5 RATIO</text>
+        </svg>
+      `;
+      return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+    }
+
+    /* ==========================================================================
+       ÉTAT DU PANIER EN MÉMOIRE (SANS LOCALSTORAGE)
+       ========================================================================== */
+    let cart = []; // [{ product, size, quantity }]
+
+    function formatTND(val) {
+      return `${val.toFixed(2).replace('.', ',')} TND`;
+    }
+
+    function getCartTotalCount() {
+      return cart.reduce((acc, item) => acc + item.quantity, 0);
+    }
+
+    function getCartSubtotal() {
+      return cart.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
+    }
+
+    function updateHeaderCartUI() {
+      const count = getCartTotalCount();
+      const subtotal = getCartSubtotal();
+      const link = document.getElementById('headerCartLink');
+      if (link) {
+        link.innerHTML = `
+          <span class="cart-label-desktop">CART ${formatTND(subtotal)} (${count})</span>
+          <span class="cart-label-mobile">CART (${count})</span>
+        `;
+      }
+    }
+
+    function addToCart(productId, size, quantity = 1) {
+      const product = PRODUCTS.find(p => p.id === productId);
+      if (!product) return;
+
+      const existingIndex = cart.findIndex(item => item.product.id === productId && item.size === size);
+      if (existingIndex > -1) {
+        cart[existingIndex].quantity += quantity;
+      } else {
+        cart.push({ product, size, quantity });
+      }
+
+      updateHeaderCartUI();
+    }
+
+    function updateCartItemQuantity(index, delta) {
+      if (!cart[index]) return;
+      cart[index].quantity += delta;
+      if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+      }
+      updateHeaderCartUI();
+      renderCartPage();
+    }
+
+    function removeCartItem(index) {
+      if (!cart[index]) return;
+      cart.splice(index, 1);
+      updateHeaderCartUI();
+      renderCartPage();
+    }
+
+    /* ==========================================================================
+       ROUTAGE CLIENT-SIDE PAR HASH (#/...)
+       ========================================================================== */
+    const appMain = document.getElementById('appMain');
+
+    function router() {
+      const hash = window.location.hash || '#/';
+      const cleanHash = hash.replace(/^#/, '');
+
+      // Fermer automatiquement le menu mobile et la recherche
+      closeMobileDrawer();
+      closeSearchPanel();
+      window.scrollTo(0, 0);
+
+      // Nettoyage observateur PDP sticky bar si navigation hors PDP
+      if (window._pdpBoxObserver) {
+        window._pdpBoxObserver.disconnect();
+        window._pdpBoxObserver = null;
+      }
+      const existingSticky = document.getElementById('pdpStickyBar');
+      if (existingSticky && !cleanHash.startsWith('/products/')) {
+        existingSticky.remove();
+      }
+
+      // Activer l'état visuel du lien de navigation
+      document.querySelectorAll('.nav-link').forEach(link => {
+        const route = link.dataset.route;
+        if ((route === '' && cleanHash === '/') || (route && cleanHash.includes(route))) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+
+      // Routeur par motif
+      if (cleanHash === '/' || cleanHash === '') {
+        renderHomePage();
+      } else if (cleanHash.startsWith('/collections/')) {
+        const handle = cleanHash.replace('/collections/', '').split('?')[0];
+        renderCollectionPage(handle);
+      } else if (cleanHash.startsWith('/products/')) {
+        const prodId = cleanHash.replace('/products/', '').split('?')[0];
+        renderProductPage(prodId);
+      } else if (cleanHash === '/cart') {
+        renderCartPage();
+      } else if (cleanHash === '/checkout') {
+        renderCheckoutPage();
+      } else if (cleanHash === '/vip') {
+        renderVIPPage();
+      } else if (cleanHash === '/contact') {
+        renderContactPage();
+      } else if (cleanHash === '/size-guide') {
+        renderSizeGuidePage();
+      } else if (cleanHash === '/track-parcel') {
+        renderTrackParcelPage();
+      } else if (cleanHash === '/account') {
+        renderAccountPage();
+      } else if (cleanHash.startsWith('/legal/')) {
+        const slug = cleanHash.replace('/legal/', '');
+        renderLegalPage(slug);
+      } else {
+        renderHomePage();
+      }
+    }
+
+    window.addEventListener('hashchange', router);
+
+    /* ==========================================================================
+       RENDU CARTE PRODUIT COMPOSANT RÉUTILISABLE
+       ========================================================================== */
+    function renderProductCardHTML(p) {
+      const isSale = p.oldPrice && p.oldPrice > p.price;
+      const saveAmount = isSale ? (p.oldPrice - p.price) : 0;
+
+      let badgeHTML = '';
+      if (p.soldOut) {
+        badgeHTML = `<span class="card-badge card-badge-soldout">SOLD OUT</span>`;
+      } else if (isSale) {
+        badgeHTML = `<span class="card-badge">SAVE ${saveAmount.toFixed(0)} TND</span>`;
+      }
+
+      return `
+        <a href="#/products/${p.id}" class="product-card">
+          <div class="product-card-media">
+            ${badgeHTML}
+            <img src="${p.images[0]}" alt="${p.name}" class="product-img" loading="lazy">
+            <img src="${p.images[1] || p.images[0]}" alt="${p.name} vue 2" class="product-img product-img-hover" loading="lazy">
+          </div>
+          <div class="product-card-info">
+            <h3 class="product-card-name">${p.name}</h3>
+            <div class="product-card-pricing">
+              <span class="tabular-nums">${formatTND(p.price)}</span>
+              ${isSale ? `<span class="old-price tabular-nums">${formatTND(p.oldPrice)}</span>` : ''}
+            </div>
+          </div>
+        </a>
+      `;
+    }
+
+    /* ==========================================================================
+       1. PAGE D'ACCUEIL (HOME)
+       ========================================================================== */
+    function renderHomePage() {
+      // 12 premiers produits
+      const homeProducts = PRODUCTS.slice(0, 12);
+
+      appMain.innerHTML = `
+        <!-- Grande bannière photo réelle de campagne -->
+        <div class="home-hero-banner">
+          <img src="${IMGS.hero}" alt="Bannière AKIRA New Collection" class="home-hero-img" style="filter: grayscale(100%) contrast(110%) brightness(0.85);">
+          <div class="home-hero-content" style="background: rgba(0,0,0,0.4); padding: 24px 36px; border: 1px solid rgba(255,255,255,0.2); color: #fff;">
+            <h1 style="font-size: 21px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #fff;">NEW COLLECTION</h1>
+            <p style="font-size: 12px; margin-top: 6px; letter-spacing: 0.1em; color: #e5e5e5;">DESIGNED & ASSEMBLED IN TUNISIA</p>
+          </div>
+        </div>
+
+        <div class="container">
+          <h2 class="home-section-title">NEW COLLECTION</h2>
+
+          <div class="products-grid">
+            ${homeProducts.map(renderProductCardHTML).join('')}
+          </div>
+
+          <div class="view-all-wrap">
+            <a href="#/collections/all" class="btn-action">VIEW ALL</a>
+          </div>
+        </div>
+      `;
+    }
+
+    /* ==========================================================================
+       2. PAGES COLLECTIONS (ALL, NEW, CATEGORIES, SALES)
+       ========================================================================== */
+    let currentCollectionSort = 'featured';
+
+    function renderCollectionPage(handle) {
+      let filtered = [];
+      let pageTitle = '';
+
+      switch(handle) {
+        case 'all':
+          filtered = [...PRODUCTS];
+          pageTitle = 'ALL PRODUCTS';
+          break;
+        case 'new-collection':
+          filtered = PRODUCTS.filter(p => p.isNew);
+          pageTitle = 'NEW COLLECTION';
+          break;
+        case 'sweats-hoodies-zip':
+          filtered = PRODUCTS.filter(p => p.category === 'sweats-hoodies-zip');
+          pageTitle = 'HOODIES / ZIP';
+          break;
+        case 'pants':
+          filtered = PRODUCTS.filter(p => p.category === 'pants');
+          pageTitle = 'PANTS';
+          break;
+        case 'short':
+          filtered = PRODUCTS.filter(p => p.category === 'short');
+          pageTitle = 'SHORT';
+          break;
+        case 't-shirts':
+          filtered = PRODUCTS.filter(p => p.category === 't-shirts');
+          pageTitle = 'T-SHIRTS';
+          break;
+        case 'knits':
+          filtered = PRODUCTS.filter(p => p.category === 'knits');
+          pageTitle = 'KNIT';
+          break;
+        case 'jackets':
+          filtered = PRODUCTS.filter(p => p.category === 'jackets');
+          pageTitle = 'JACKETS';
+          break;
+        case 'accessories':
+          filtered = PRODUCTS.filter(p => p.category === 'accessories');
+          pageTitle = 'ACCESSORIES';
+          break;
+        case 'sales':
+          filtered = PRODUCTS.filter(p => p.oldPrice && p.oldPrice > p.price);
+          pageTitle = 'SALES';
+          break;
+        default:
+          filtered = [...PRODUCTS];
+          pageTitle = 'ALL PRODUCTS';
+      }
+
+      // Tri
+      if (currentCollectionSort === 'price-low') {
+        filtered.sort((a, b) => a.price - b.price);
+      } else if (currentCollectionSort === 'price-high') {
+        filtered.sort((a, b) => b.price - a.price);
+      } else if (currentCollectionSort === 'alphabetical') {
+        filtered.sort((a, b) => a.name.localeCompare(b.name));
+      }
+
+      appMain.innerHTML = `
+        <div class="container" style="padding-bottom: 80px;">
+          <div class="collection-header-row">
+            <div class="collection-title-box">
+              <h1 class="collection-page-title">${pageTitle}</h1>
+              <span class="collection-count-label">${filtered.length} products</span>
+            </div>
+
+            <div>
+              <label for="sortSelect" class="form-label" style="margin-right: 8px;">SORT BY:</label>
+              <select id="sortSelect" class="collection-sort-select" onchange="handleSortChange(this.value, '${handle}')">
+                <option value="featured" ${currentCollectionSort === 'featured' ? 'selected' : ''}>Featured</option>
+                <option value="price-low" ${currentCollectionSort === 'price-low' ? 'selected' : ''}>Price: low to high</option>
+                <option value="price-high" ${currentCollectionSort === 'price-high' ? 'selected' : ''}>Price: high to low</option>
+                <option value="alphabetical" ${currentCollectionSort === 'alphabetical' ? 'selected' : ''}>Alphabetically: A-Z</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="products-grid">
+            ${filtered.length > 0 ? filtered.map(renderProductCardHTML).join('') : '<p style="grid-column: 1/-1; padding: 40px 0; color: var(--color-muted);">No products found in this collection.</p>'}
+          </div>
+        </div>
+      `;
+    }
+
+    function handleSortChange(sortVal, handle) {
+      currentCollectionSort = sortVal;
+      renderCollectionPage(handle);
+    }
+
+    /* ==========================================================================
+       3. PAGE PRODUIT DÉTAILLÉE (PDP) — STYLE CONVERTY COMMANDE DIRECTE
+       ========================================================================== */
+    let currentSelectedSize = null;
+    let currentPDPQty = 1;
+    let pdpCurrentProductId = null;
+
+    function getConvertyTotals(product) {
+      const subtotal = (product ? product.price : 0) * currentPDPQty;
+      const shipping = subtotal >= 300 ? 0 : 8;
+      const total = subtotal + shipping;
+      return { subtotal, shipping, total };
+    }
+
+    function renderProductPage(id) {
+      const product = PRODUCTS.find(p => p.id === id);
+      if (!product) {
+        appMain.innerHTML = `<div class="container" style="padding: 60px 0;"><p>Product not found.</p><a href="#/" class="btn-action" style="margin-top: 16px;">Go Home</a></div>`;
+        return;
+      }
+
+      pdpCurrentProductId = id;
+      currentPDPQty = 1;
+      // Présélectionner la première taille disponible
+      currentSelectedSize = product.availableSizes[0] || null;
+
+      const isSale = product.oldPrice && product.oldPrice > product.price;
+      const totals = getConvertyTotals(product);
+
+      appMain.innerHTML = `
+        <div class="container">
+          <!-- Fil d'Ariane -->
+          <nav class="breadcrumb-bar" aria-label="Breadcrumb">
+            <a href="#/">HOME</a> / 
+            <a href="#/collections/${product.category}">${product.category.replace(/-/g, ' ')}</a> / 
+            <span>${product.name}</span>
+          </nav>
+
+          <div class="pdp-grid">
+            <!-- Galerie 4 images (défilement horizontal mobile avec indicateur, 2 colonnes desktop) -->
+            <div>
+              <div class="pdp-gallery-wrap" id="pdpGalleryWrap" onscroll="updateGalleryIndicator(this)">
+                ${product.images.map((img, idx) => `
+                  <div class="pdp-gallery-item" data-index="${idx}">
+                    <img src="${img}" alt="${product.name} vue ${idx + 1}" loading="${idx === 0 ? 'eager' : 'lazy'}">
+                  </div>
+                `).join('')}
+              </div>
+              <div class="pdp-mobile-gallery-counter" id="pdpGalleryCounter">
+                <span>1 / ${product.images.length}</span>
+              </div>
+            </div>
+
+            <!-- Détails achat & infos (Style Converty) -->
+            <div class="pdp-details-wrap">
+              <div>
+                <h1 class="pdp-title">${product.name}</h1>
+                <div class="pdp-price-box" style="margin-top: 6px;">
+                  <span class="tabular-nums">${formatTND(product.price)}</span>
+                  ${isSale ? `<span class="old-price tabular-nums">${formatTND(product.oldPrice)}</span>` : ''}
+                  ${isSale ? `<span class="card-badge" style="position: static;">SALE</span>` : ''}
+                </div>
+              </div>
+
+              <!-- Sélection de taille -->
+              <div class="size-select-section" id="pdpSizeSection">
+                <div class="size-header-row">
+                  <span>SIZE : <strong id="selectedSizeLabel">${currentSelectedSize || 'AUCUNE'}</strong></span>
+                  <a href="#/size-guide" class="size-guide-link">Guide de taille</a>
+                </div>
+
+                <div class="size-buttons-grid">
+                  ${product.sizes.map(size => {
+                    const isAvail = product.availableSizes.includes(size);
+                    const isSelected = currentSelectedSize === size;
+                    return `
+                      <button 
+                        type="button" 
+                        class="size-btn ${size === 'Unique' ? 'unique-size' : ''} ${isSelected ? 'selected' : ''}" 
+                        ${!isAvail ? 'disabled' : ''}
+                        onclick="handlePDPSelectSize('${size}')"
+                        title="${!isAvail ? 'Sold out' : size}">
+                        ${size}
+                      </button>
+                    `;
+                  }).join('')}
+                </div>
+                <p id="pdpSizeErrorNotice" class="converty-error-text">Veuillez choisir une taille avant de valider votre commande.</p>
+              </div>
+
+              <!-- Quantité -->
+              <div class="qty-select-row">
+                <span>QUANTITY :</span>
+                <div class="qty-stepper">
+                  <button type="button" class="qty-btn" onclick="handlePDPQtyChange(-1)">-</button>
+                  <span class="qty-value tabular-nums" id="pdpQtyVal">1</span>
+                  <button type="button" class="qty-btn" onclick="handlePDPQtyChange(1)">+</button>
+                </div>
+              </div>
+
+              <!-- ============================================================
+                   1. CADRE DE COMMANDE DIRECTE (STYLE CONVERTY)
+                   ============================================================ -->
+              <div id="convertyOrderBox" class="converty-order-box">
+                <div class="converty-box-header">
+                  <h2 class="converty-box-title">Commander maintenant</h2>
+                  <p class="converty-box-subtitle">Pour commander, remplis ce formulaire • Paiement à la livraison</p>
+                </div>
+
+                <form id="convertyDirectOrderForm" onsubmit="handleConvertyOrderSubmit(event, '${product.id}')" novalidate>
+                  <!-- Nom et prénom -->
+                  <div class="converty-form-group" id="groupDirectName">
+                    <label class="converty-label" for="directCustName">Nom et prénom *</label>
+                    <input type="text" id="directCustName" class="form-input" placeholder="ex. Mehdi Trabelsi" required>
+                    <span class="converty-error-text">Veuillez renseigner votre nom et prénom.</span>
+                  </div>
+
+                  <!-- Téléphone (8 chiffres avec préfixe +216 affiché) -->
+                  <div class="converty-form-group" id="groupDirectPhone">
+                    <label class="converty-label" for="directCustPhone">Téléphone *</label>
+                    <div class="phone-input-wrap">
+                      <span class="phone-prefix">+216</span>
+                      <input type="tel" id="directCustPhone" class="phone-input" placeholder="ex. 98 123 456" maxlength="12" required>
+                    </div>
+                    <span class="converty-error-text">Numéro de téléphone tunisien valide requis (8 chiffres).</span>
+                  </div>
+
+                  <!-- Gouvernorat (liste des 24) -->
+                  <div class="converty-form-group" id="groupDirectGov">
+                    <label class="converty-label" for="directCustGov">Gouvernorat *</label>
+                    <select id="directCustGov" class="form-select" required>
+                      <option value="Tunis" selected>Tunis</option>
+                      <option value="Ariana">Ariana</option>
+                      <option value="Ben Arous">Ben Arous</option>
+                      <option value="Manouba">Manouba</option>
+                      <option value="Nabeul">Nabeul</option>
+                      <option value="Zaghouan">Zaghouan</option>
+                      <option value="Bizerte">Bizerte</option>
+                      <option value="Béja">Béja</option>
+                      <option value="Jendouba">Jendouba</option>
+                      <option value="Le Kef">Le Kef</option>
+                      <option value="Siliana">Siliana</option>
+                      <option value="Sousse">Sousse</option>
+                      <option value="Monastir">Monastir</option>
+                      <option value="Mahdia">Mahdia</option>
+                      <option value="Sfax">Sfax</option>
+                      <option value="Kairouan">Kairouan</option>
+                      <option value="Kasserine">Kasserine</option>
+                      <option value="Sidi Bouzid">Sidi Bouzid</option>
+                      <option value="Gabès">Gabès</option>
+                      <option value="Médenine">Médenine</option>
+                      <option value="Tataouine">Tataouine</option>
+                      <option value="Gafsa">Gafsa</option>
+                      <option value="Tozeur">Tozeur</option>
+                      <option value="Kébili">Kébili</option>
+                    </select>
+                  </div>
+
+                  <!-- Adresse complète -->
+                  <div class="converty-form-group" id="groupDirectAddress">
+                    <label class="converty-label" for="directCustAddress">Adresse complète *</label>
+                    <input type="text" id="directCustAddress" class="form-input" placeholder="Rue, numéro, quartier ou repère..." required>
+                    <span class="converty-error-text">Veuillez indiquer votre adresse de livraison.</span>
+                  </div>
+
+                  <!-- Choix de livraison (à domicile par défaut) -->
+                  <div class="converty-form-group">
+                    <label class="converty-label">Mode de livraison</label>
+                    <div class="converty-delivery-option">
+                      <label class="converty-delivery-radio" style="cursor: pointer;">
+                        <input type="radio" name="directDelivery" value="domicile" checked style="accent-color: var(--color-black); margin-right: 6px;">
+                        <span>Livraison à domicile</span>
+                      </label>
+                      <span class="tabular-nums" id="convertyDeliveryBadge">${totals.shipping === 0 ? 'OFFERTE' : '8,00 TND'}</span>
+                    </div>
+                  </div>
+
+                  <!-- Mention Paiement à la livraison -->
+                  <div class="converty-delivery-option" style="background-color: var(--color-gray-bg);">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <span style="font-size: 13px;">◉</span>
+                      <span style="font-weight: 500; font-size: 11.5px;">Paiement à la livraison</span>
+                    </div>
+                    <span class="converty-badge-cod">Espèces</span>
+                  </div>
+
+                  <!-- Récapitulatif dans le cadre -->
+                  <div class="converty-recap-table">
+                    <div class="converty-recap-row">
+                      <span>Produit :</span>
+                      <span style="font-weight: 500; max-width: 60%; text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${product.name}</span>
+                    </div>
+                    <div class="converty-recap-row">
+                      <span>Taille :</span>
+                      <strong id="convertyRecapSize">${currentSelectedSize || 'NON CHOISIE'}</strong>
+                    </div>
+                    <div class="converty-recap-row">
+                      <span>Quantité :</span>
+                      <strong id="convertyRecapQty">${currentPDPQty}</strong>
+                    </div>
+                    <div class="converty-recap-row">
+                      <span>Prix :</span>
+                      <span class="tabular-nums" id="convertyRecapSubtotal">${formatTND(totals.subtotal)}</span>
+                    </div>
+                    <div class="converty-recap-row">
+                      <span>Livraison :</span>
+                      <span class="tabular-nums" id="convertyRecapShipping">${totals.shipping === 0 ? 'OFFERTE (dès 300 TND)' : '8,00 TND'}</span>
+                    </div>
+                    <div class="converty-recap-row total-row">
+                      <span>TOTAL :</span>
+                      <span class="tabular-nums" id="convertyRecapTotal">${formatTND(totals.total)}</span>
+                    </div>
+                  </div>
+
+                  <!-- Gros bouton noir pleine largeur -->
+                  <button 
+                    type="submit" 
+                    id="convertySubmitBtn" 
+                    class="btn-action converty-submit-btn"
+                    ${product.soldOut ? 'disabled' : ''}>
+                    ${product.soldOut ? 'SOLD OUT' : `Commander maintenant • ${formatTND(totals.total)}`}
+                  </button>
+
+                  <!-- Sous le bouton, bouton secondaire : Ajouter au panier -->
+                  <button 
+                    type="button" 
+                    id="convertyAddToCartBtn"
+                    class="converty-add-cart-btn"
+                    ${product.soldOut ? 'disabled' : ''}
+                    onclick="handlePDPAddToCart('${product.id}')">
+                    Ajouter au panier
+                  </button>
+                </form>
+
+                <!-- 3. RASSURANCE (sobre, sans emoji ni couleur) -->
+                <div class="converty-trust-list">
+                  <div class="converty-trust-item">
+                    <span class="converty-trust-bullet"></span>
+                    <span>Paiement à la livraison</span>
+                  </div>
+                  <div class="converty-trust-item">
+                    <span class="converty-trust-bullet"></span>
+                    <span>Livraison dans toute la Tunisie, 2 à 4 jours</span>
+                  </div>
+                  <div class="converty-trust-item">
+                    <span class="converty-trust-bullet"></span>
+                    <span>Échange sous 7 jours</span>
+                  </div>
+                  <div class="converty-whatsapp-wrap">
+                    <span>Besoin d'aide ? </span>
+                    <a href="https://wa.me/21698123456" target="_blank" rel="noopener" class="converty-whatsapp-link">Contactez-nous sur WhatsApp (+216 98 123 456)</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Informations mannequins & matières -->
+              <div class="pdp-specs-box">
+                <p><strong>Fit :</strong> ${product.model}</p>
+                <p><strong>Material Composition :</strong> ${product.composition}</p>
+                <p style="margin-top: 8px; border-top: 1px solid var(--color-border); padding-top: 8px;">
+                  <strong>Livraison Tunisie :</strong> 2 à 4 jours ouvrés. Forfait 8 TND. Offerte dès 300 TND d'achat.
+                </p>
+                <p><strong>Paiement :</strong> Espèces à la livraison auprès du livreur.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. BARRE D'ACHAT COLLANTE (mobile) -->
+          <div class="pdp-sticky-bar" id="pdpStickyBar">
+            <div class="pdp-sticky-info">
+              <span class="pdp-sticky-name">${product.name}</span>
+              <span class="pdp-sticky-price tabular-nums" id="pdpStickyPrice">${formatTND(totals.total)}</span>
+            </div>
+            <button 
+              type="button" 
+              class="btn-action pdp-sticky-btn" 
+              ${product.soldOut ? 'disabled' : ''}
+              onclick="handleStickyBarOrderClick()">
+              ${product.soldOut ? 'SOLD OUT' : 'Commander'}
+            </button>
+          </div>
+        </div>
+      `;
+
+      // Initialiser l'observateur d'intersection pour la barre collante mobile
+      initPDPStickyBarObserver();
+    }
+
+    function updateGalleryIndicator(wrapEl) {
+      const counter = document.getElementById('pdpGalleryCounter');
+      if (!wrapEl || !counter) return;
+      const scrollPos = wrapEl.scrollLeft;
+      const itemWidth = wrapEl.offsetWidth * 0.88;
+      const index = Math.min(3, Math.max(0, Math.round(scrollPos / itemWidth)));
+      counter.innerHTML = `<span>${index + 1} / 4</span>`;
+    }
+
+    function updateConvertyRecapAndTotals() {
+      const product = PRODUCTS.find(p => p.id === pdpCurrentProductId);
+      if (!product) return;
+
+      const totals = getConvertyTotals(product);
+
+      const sizeEl = document.getElementById('convertyRecapSize');
+      if (sizeEl) sizeEl.textContent = currentSelectedSize || 'NON CHOISIE';
+
+      const qtyEl = document.getElementById('convertyRecapQty');
+      if (qtyEl) qtyEl.textContent = currentPDPQty;
+
+      const subtotalEl = document.getElementById('convertyRecapSubtotal');
+      if (subtotalEl) subtotalEl.textContent = formatTND(totals.subtotal);
+
+      const shippingEl = document.getElementById('convertyRecapShipping');
+      if (shippingEl) shippingEl.textContent = totals.shipping === 0 ? 'OFFERTE (dès 300 TND)' : '8,00 TND';
+
+      const badgeEl = document.getElementById('convertyDeliveryBadge');
+      if (badgeEl) badgeEl.textContent = totals.shipping === 0 ? 'OFFERTE' : '8,00 TND';
+
+      const totalEl = document.getElementById('convertyRecapTotal');
+      if (totalEl) totalEl.textContent = formatTND(totals.total);
+
+      const submitBtn = document.getElementById('convertySubmitBtn');
+      if (submitBtn && !product.soldOut) {
+        submitBtn.textContent = `Commander maintenant • ${formatTND(totals.total)}`;
+      }
+
+      const stickyPrice = document.getElementById('pdpStickyPrice');
+      if (stickyPrice) {
+        stickyPrice.textContent = formatTND(totals.total);
+      }
+    }
+
+    function handlePDPSelectSize(size) {
+      currentSelectedSize = size;
+      const label = document.getElementById('selectedSizeLabel');
+      if (label) label.textContent = size;
+
+      document.querySelectorAll('.size-btn').forEach(btn => {
+        btn.classList.toggle('selected', btn.textContent.trim() === size);
+      });
+
+      const err = document.getElementById('pdpSizeErrorNotice');
+      if (err) err.style.display = 'none';
+
+      updateConvertyRecapAndTotals();
+    }
+
+    function handlePDPQtyChange(delta) {
+      currentPDPQty = Math.max(1, currentPDPQty + delta);
+      const valEl = document.getElementById('pdpQtyVal');
+      if (valEl) valEl.textContent = currentPDPQty;
+
+      updateConvertyRecapAndTotals();
+    }
+
+    function handlePDPAddToCart(productId) {
+      const product = PRODUCTS.find(p => p.id === productId);
+      if (!product || product.soldOut) return;
+
+      if (!currentSelectedSize) {
+        const err = document.getElementById('pdpSizeErrorNotice');
+        if (err) {
+          err.style.display = 'block';
+          err.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        return;
+      }
+
+      const btn = document.getElementById('convertyAddToCartBtn');
+      if (!btn) return;
+
+      btn.disabled = true;
+      btn.textContent = 'AJOUT EN COURS...';
+
+      setTimeout(() => {
+        addToCart(productId, currentSelectedSize, currentPDPQty);
+        btn.textContent = 'AJOUTÉ AU PANIER ✓';
+
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.textContent = 'Ajouter au panier';
+        }, 1400);
+      }, 300);
+    }
+
+    /* Barre d'achat collante mobile : apparaît quand le cadre n'est plus visible */
+    function initPDPStickyBarObserver() {
+      const box = document.getElementById('convertyOrderBox');
+      const stickyBar = document.getElementById('pdpStickyBar');
+      if (!box || !stickyBar) return;
+
+      if (window._pdpBoxObserver) {
+        window._pdpBoxObserver.disconnect();
+      }
+
+      // IntersectionObserver détecte si le cadre de commande est dans le viewport
+      window._pdpBoxObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            stickyBar.classList.remove('visible');
+          } else {
+            stickyBar.classList.add('visible');
+          }
+        });
+      }, {
+        threshold: 0.05
+      });
+
+      window._pdpBoxObserver.observe(box);
+    }
+
+    function handleStickyBarOrderClick() {
+      const box = document.getElementById('convertyOrderBox') || document.getElementById('convertySuccessBox');
+      if (box) {
+        box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const nameInput = document.getElementById('directCustName');
+        if (nameInput) {
+          setTimeout(() => nameInput.focus(), 400);
+        }
+      }
+    }
+
+    /* Validation et soumission de la commande directe style Converty */
+    function handleConvertyOrderSubmit(event, productId) {
+      event.preventDefault();
+
+      const product = PRODUCTS.find(p => p.id === productId);
+      if (!product || product.soldOut) return;
+
+      // 1. Validation taille
+      if (!currentSelectedSize) {
+        const sizeNotice = document.getElementById('pdpSizeErrorNotice');
+        if (sizeNotice) sizeNotice.style.display = 'block';
+        const sizeSection = document.getElementById('pdpSizeSection');
+        if (sizeSection) sizeSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      // 2. Récupération des champs
+      const nameGroup = document.getElementById('groupDirectName');
+      const phoneGroup = document.getElementById('groupDirectPhone');
+      const govGroup = document.getElementById('groupDirectGov');
+      const addressGroup = document.getElementById('groupDirectAddress');
+
+      const nameInput = document.getElementById('directCustName');
+      const phoneInput = document.getElementById('directCustPhone');
+      const govSelect = document.getElementById('directCustGov');
+      const addressInput = document.getElementById('directCustAddress');
+
+      // Réinitialiser les messages d'erreurs
+      [nameGroup, phoneGroup, govGroup, addressGroup].forEach(g => {
+        if (g) g.classList.remove('has-error');
+      });
+
+      let hasError = false;
+      let firstErrorEl = null;
+
+      const custName = nameInput ? nameInput.value.trim() : '';
+      if (!custName || custName.length < 2) {
+        if (nameGroup) nameGroup.classList.add('has-error');
+        hasError = true;
+        if (!firstErrorEl) firstErrorEl = nameInput;
+      }
+
+      const rawPhone = phoneInput ? phoneInput.value.trim() : '';
+      const cleanPhone = rawPhone.replace(/\D/g, '');
+      if (cleanPhone.length !== 8) {
+        if (phoneGroup) phoneGroup.classList.add('has-error');
+        hasError = true;
+        if (!firstErrorEl) firstErrorEl = phoneInput;
+      }
+
+      const custGov = govSelect ? govSelect.value.trim() : '';
+      if (!custGov) {
+        if (govGroup) govGroup.classList.add('has-error');
+        hasError = true;
+        if (!firstErrorEl) firstErrorEl = govSelect;
+      }
+
+      const custAddress = addressInput ? addressInput.value.trim() : '';
+      if (!custAddress || custAddress.length < 4) {
+        if (addressGroup) addressGroup.classList.add('has-error');
+        hasError = true;
+        if (!firstErrorEl) firstErrorEl = addressInput;
+      }
+
+      if (hasError) {
+        if (firstErrorEl) firstErrorEl.focus();
+        return;
+      }
+
+      // Calcul des montants
+      const totals = getConvertyTotals(product);
+      const orderNumber = `AK-${Math.floor(100000 + Math.random() * 900000)}`;
+
+      // Masquer la barre collante
+      if (window._pdpBoxObserver) {
+        window._pdpBoxObserver.disconnect();
+      }
+      const stickyBar = document.getElementById('pdpStickyBar');
+      if (stickyBar) stickyBar.classList.remove('visible');
+
+      // Remplacement du cadre par le message de confirmation avec numéro de commande
+      const orderBox = document.getElementById('convertyOrderBox');
+      if (orderBox) {
+        orderBox.outerHTML = `
+          <div id="convertySuccessBox" class="converty-success-box">
+            <div class="converty-success-header">
+              <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); margin-bottom: 2px;">PAIEMENT À LA LIVRAISON CONFIRMÉ</div>
+              <h2 class="converty-success-title">COMMANDE ENREGISTRÉE</h2>
+              <div class="converty-success-order-num">RÉFÉRENCE : #${orderNumber}</div>
+            </div>
+
+            <div style="font-size: 12px; line-height: 1.6; border-bottom: 1px solid var(--color-border); padding-bottom: 14px;">
+              <p>Merci <strong>${custName}</strong>, votre commande directe a bien été prise en compte par notre atelier à Tunis.</p>
+              <p style="margin-top: 6px;">Notre service logistique vous contactera par téléphone au <strong>+216 ${cleanPhone}</strong> ou par SMS avant la remise du colis au livreur.</p>
+            </div>
+
+            <div class="converty-recap-table" style="background-color: var(--color-white); border: 1px solid var(--color-black); margin-bottom: 0;">
+              <div class="converty-recap-row">
+                <span>Article :</span>
+                <span style="font-weight: 600;">${product.name}</span>
+              </div>
+              <div class="converty-recap-row">
+                <span>Taille :</span>
+                <strong>${currentSelectedSize}</strong>
+              </div>
+              <div class="converty-recap-row">
+                <span>Quantité :</span>
+                <strong>${currentPDPQty}</strong>
+              </div>
+              <div class="converty-recap-row">
+                <span>Destination :</span>
+                <span>${custAddress}, ${custGov}</span>
+              </div>
+              <div class="converty-recap-row">
+                <span>Frais de livraison :</span>
+                <span>${totals.shipping === 0 ? 'Gratuits (offerts dès 300 TND)' : '8,00 TND'}</span>
+              </div>
+              <div class="converty-recap-row total-row" style="font-size: 13px;">
+                <span>MONTANT EN ESPÈCES À LA LIVRAISON :</span>
+                <strong class="tabular-nums">${formatTND(totals.total)}</strong>
+              </div>
+            </div>
+
+            <div style="font-size: 11.5px; color: var(--color-muted); line-height: 1.5;">
+              <p>• Délai d'acheminement : 2 à 4 jours ouvrés dans toute la Tunisie.</p>
+              <p>• Préparez le montant exact de ${formatTND(totals.total)} pour le livreur partenaire.</p>
+              <p>• Échange possible sous 7 jours suivant réception.</p>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">
+              <a href="#/collections/all" class="btn-action" style="text-align: center; height: 46px; display: flex; align-items: center; justify-content: center;">CONTINUER MES ACHATS</a>
+              <a href="https://wa.me/21698123456?text=Bonjour%20AKIRA,%20je%20vous%20contacte%20concernant%20ma%20commande%20%23${orderNumber}" target="_blank" rel="noopener" class="converty-add-cart-btn" style="text-align: center; height: 40px; display: flex; align-items: center; justify-content: center;">ASSISTANCE WHATSAPP (+216 98 123 456)</a>
+            </div>
+          </div>
+        `;
+
+        const successBox = document.getElementById('convertySuccessBox');
+        if (successBox) {
+          successBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    }
+
+    /* ==========================================================================
+       4. PAGE PANIER (#/cart)
+       ========================================================================== */
+    function renderCartPage() {
+      const subtotal = getCartSubtotal();
+      const count = getCartTotalCount();
+      const freeShippingThreshold = 300;
+      const shippingRemaining = freeShippingThreshold - subtotal;
+
+      if (cart.length === 0) {
+        appMain.innerHTML = `
+          <div class="container cart-page-wrap" style="text-align: center; padding: 60px 0;">
+            <h1 class="cart-page-title">YOUR CART IS EMPTY</h1>
+            <p style="color: var(--color-muted); margin-bottom: 24px;">Browse our collection and find pieces made in Tunisia.</p>
+            <a href="#/collections/all" class="btn-action">START SHOPPING</a>
+          </div>
+        `;
+        return;
+      }
+
+      appMain.innerHTML = `
+        <div class="container cart-page-wrap">
+          <h1 class="cart-page-title">YOUR CART (${count})</h1>
+
+          <div class="cart-items-list">
+            ${cart.map((item, idx) => `
+              <div class="cart-item-row">
+                <img src="${item.product.images[0]}" alt="${item.product.name}" class="cart-thumb">
+                <div>
+                  <h3 class="cart-item-name">${item.product.name}</h3>
+                  <p class="cart-item-meta">Size : ${item.size} · Unit : ${formatTND(item.product.price)}</p>
+                  <button type="button" class="cart-remove-link" onclick="removeCartItem(${idx})">Remove</button>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+                  <div class="qty-stepper">
+                    <button type="button" class="qty-btn" onclick="updateCartItemQuantity(${idx}, -1)">-</button>
+                    <span class="qty-value tabular-nums">${item.quantity}</span>
+                    <button type="button" class="qty-btn" onclick="updateCartItemQuantity(${idx}, 1)">+</button>
+                  </div>
+                  <span class="tabular-nums" style="font-weight: 600; font-size: 13px;">${formatTND(item.product.price * item.quantity)}</span>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+
+          <div class="cart-summary-card">
+            <div class="cart-subtotal-text">
+              <span>SUBTOTAL :</span>
+              <span class="tabular-nums" style="margin-left: 8px;">${formatTND(subtotal)}</span>
+            </div>
+            <p class="cart-shipping-note">
+              ${subtotal >= freeShippingThreshold 
+                ? 'Livraison gratuite en Tunisie incluse.' 
+                : `Ajoutez ${formatTND(shippingRemaining)} pour bénéficier de la livraison gratuite en Tunisie (8 TND sinon).`}
+            </p>
+            <a href="#/checkout" class="btn-action" style="width: 100%; max-width: 320px; height: 48px;">CHECK OUT</a>
+          </div>
+        </div>
+      `;
+    }
+
+    /* ==========================================================================
+       5. PAGE COMMANDE (#/checkout - TUNISIE 24 GOUVERNORATS)
+       ========================================================================== */
+    let selectedCheckoutPayment = 'cod'; // 'cod' ou 'card'
+
+    function renderCheckoutPage() {
+      if (cart.length === 0) {
+        window.location.hash = '#/cart';
+        return;
+      }
+
+      const subtotal = getCartSubtotal();
+      const shippingCost = subtotal >= 300 ? 0 : 8.00;
+      const total = subtotal + shippingCost;
+
+      appMain.innerHTML = `
+        <div class="container checkout-wrap">
+          <!-- Formulaire de commande -->
+          <div>
+            <h1 class="checkout-section-title">SHIPPING & CONTACT (TUNISIE)</h1>
+            <form id="checkoutForm" onsubmit="handleOrderSubmission(event)">
+              <div class="form-row-2">
+                <div class="form-group" id="groupName">
+                  <label class="form-label" for="custName">Nom complet *</label>
+                  <input type="text" id="custName" class="form-input" required placeholder="ex. Mehdi Trabelsi">
+                  <span class="form-error-msg">Veuillez entrer votre nom complet.</span>
+                </div>
+                <div class="form-group" id="groupPhone">
+                  <label class="form-label" for="custPhone">Téléphone (8 chiffres) *</label>
+                  <input type="tel" id="custPhone" class="form-input" required placeholder="ex. 98 123 456" pattern="[0-9]{8}|[0-9]{2}\\s[0-9]{3}\\s[0-9]{3}">
+                  <span class="form-error-msg">Veuillez renseigner un numéro tunisien valide à 8 chiffres.</span>
+                </div>
+              </div>
+
+              <div class="form-group" id="groupEmail">
+                <label class="form-label" for="custEmail">Adresse e-mail (Optionnel)</label>
+                <input type="email" id="custEmail" class="form-input" placeholder="Pour recevoir votre confirmation par e-mail">
+              </div>
+
+              <div class="form-group" id="groupAddress">
+                <label class="form-label" for="custAddress">Adresse complète de livraison *</label>
+                <input type="text" id="custAddress" class="form-input" required placeholder="Rue, numéro, appartement, repère">
+                <span class="form-error-msg">Veuillez renseigner votre adresse de livraison.</span>
+              </div>
+
+              <div class="form-row-2">
+                <div class="form-group" id="groupGov">
+                  <label class="form-label" for="custGov">Gouvernorat *</label>
+                  <select id="custGov" class="form-select" required>
+                    <option value="Tunis">Tunis</option>
+                    <option value="Ariana">Ariana</option>
+                    <option value="Ben Arous">Ben Arous</option>
+                    <option value="Manouba">Manouba</option>
+                    <option value="Nabeul">Nabeul</option>
+                    <option value="Zaghouan">Zaghouan</option>
+                    <option value="Bizerte">Bizerte</option>
+                    <option value="Béja">Béja</option>
+                    <option value="Jendouba">Jendouba</option>
+                    <option value="Le Kef">Le Kef</option>
+                    <option value="Siliana">Siliana</option>
+                    <option value="Sousse">Sousse</option>
+                    <option value="Monastir">Monastir</option>
+                    <option value="Mahdia">Mahdia</option>
+                    <option value="Sfax">Sfax</option>
+                    <option value="Kairouan">Kairouan</option>
+                    <option value="Kasserine">Kasserine</option>
+                    <option value="Sidi Bouzid">Sidi Bouzid</option>
+                    <option value="Gabès">Gabès</option>
+                    <option value="Médenine">Médenine</option>
+                    <option value="Tataouine">Tataouine</option>
+                    <option value="Gafsa">Gafsa</option>
+                    <option value="Tozeur">Tozeur</option>
+                    <option value="Kébili">Kébili</option>
+                  </select>
+                </div>
+
+                <div class="form-group" id="groupCity">
+                  <label class="form-label" for="custCity">Ville / Code Postal *</label>
+                  <input type="text" id="custCity" class="form-input" required placeholder="ex. La Marsa 2070">
+                  <span class="form-error-msg">Veuillez spécifier votre ville.</span>
+                </div>
+              </div>
+
+              <!-- Options de paiement -->
+              <div style="margin-top: 24px;">
+                <h2 class="checkout-section-title">PAYMENT METHOD</h2>
+
+                <div class="payment-option-card ${selectedCheckoutPayment === 'cod' ? 'selected' : ''}" onclick="selectPaymentMethod('cod')">
+                  <div style="font-weight: 600; font-size: 12px; text-transform: uppercase;">PAIEMENT À LA LIVRAISON (PAR DÉFAUT)</div>
+                  <div style="font-size: 11.5px; color: var(--color-muted);">Réglez en espèces au livreur à la réception de votre colis.</div>
+                </div>
+
+                <div class="payment-option-card ${selectedCheckoutPayment === 'card' ? 'selected' : ''}" onclick="selectPaymentMethod('card')">
+                  <div style="font-weight: 600; font-size: 12px; text-transform: uppercase;">CARTE BANCAIRE NATIONALE (DÉMO SMT / CLICTOPAY)</div>
+                  <div style="font-size: 11.5px; color: var(--color-muted);">Paiement sécurisé par carte bancaire tunisienne.</div>
+                </div>
+              </div>
+
+              <div style="margin-top: 24px;">
+                <button type="submit" class="btn-action" style="width: 100%; height: 50px;">COMPLETE ORDER</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Résumé de commande -->
+          <div>
+            <div class="checkout-summary-box">
+              <h2 style="font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid var(--color-border); padding-bottom: 8px;">ORDER SUMMARY</h2>
+              
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                ${cart.map(item => `
+                  <div style="display: flex; justify-content: space-between; font-size: 12px;">
+                    <div>
+                      <span>${item.product.name} (x${item.quantity})</span>
+                      <div style="color: var(--color-muted); font-size: 11px;">Size: ${item.size}</div>
+                    </div>
+                    <span class="tabular-nums">${formatTND(item.product.price * item.quantity)}</span>
+                  </div>
+                `).join('')}
+              </div>
+
+              <div style="border-top: 1px solid var(--color-border); padding-top: 12px; display: flex; flex-direction: column; gap: 8px; font-size: 12.5px;">
+                <div style="display: flex; justify-content: space-between;">
+                  <span>Sous-total</span>
+                  <span class="tabular-nums">${formatTND(subtotal)}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                  <span>Livraison (Tunisie 2-4 jours)</span>
+                  <span class="tabular-nums">${shippingCost === 0 ? 'OFFERTE' : formatTND(shippingCost)}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 14px; border-top: 1px solid var(--color-border); padding-top: 8px;">
+                  <span>Total</span>
+                  <span class="tabular-nums">${formatTND(total)}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function selectPaymentMethod(method) {
+      selectedCheckoutPayment = method;
+      document.querySelectorAll('.payment-option-card').forEach(c => c.classList.remove('selected'));
+      event.currentTarget.classList.add('selected');
+    }
+
+    function handleOrderSubmission(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('custName').value.trim();
+      const phone = document.getElementById('custPhone').value.trim();
+      const addr = document.getElementById('custAddress').value.trim();
+      const gov = document.getElementById('custGov').value;
+      const city = document.getElementById('custCity').value.trim();
+
+      let hasError = false;
+
+      // Validation
+      if (!name) { document.getElementById('groupName').classList.add('has-error'); hasError = true; }
+      else { document.getElementById('groupName').classList.remove('has-error'); }
+
+      const phoneClean = phone.replace(/\s+/g, '');
+      if (phoneClean.length !== 8 || !/^\d+$/.test(phoneClean)) {
+        document.getElementById('groupPhone').classList.add('has-error'); hasError = true;
+      } else { document.getElementById('groupPhone').classList.remove('has-error'); }
+
+      if (!addr) { document.getElementById('groupAddress').classList.add('has-error'); hasError = true; }
+      else { document.getElementById('groupAddress').classList.remove('has-error'); }
+
+      if (!city) { document.getElementById('groupCity').classList.add('has-error'); hasError = true; }
+      else { document.getElementById('groupCity').classList.remove('has-error'); }
+
+      if (hasError) return;
+
+      const orderNumber = `AK-${Math.floor(100000 + Math.random() * 900000)}`;
+      const subtotal = getCartSubtotal();
+      const shippingCost = subtotal >= 300 ? 0 : 8.00;
+      const total = subtotal + shippingCost;
+      const paymentLabel = selectedCheckoutPayment === 'cod' ? 'Paiement à la livraison (espèces)' : 'Carte bancaire nationale (ClicToPay)';
+
+      // Vider le panier
+      cart = [];
+      updateHeaderCartUI();
+
+      // Écran de confirmation
+      appMain.innerHTML = `
+        <div class="container text-page-wrap" style="text-align: center; padding: 60px 0;">
+          <h1 class="text-page-title" style="text-align: center;">ORDER CONFIRMED</h1>
+          <p style="font-size: 15px; font-weight: 600; margin-bottom: 8px;">Order number: #${orderNumber}</p>
+          <p style="color: var(--color-muted); margin-bottom: 24px;">Thank you for your order, ${name}. Your items are being prepared at our Tunis atelier.</p>
+          
+          <div style="background-color: var(--color-gray-bg); border: 1px solid var(--color-border); padding: 24px; text-align: left; max-width: 480px; margin: 0 auto 32px; font-size: 12px; line-height: 1.6;">
+            <p><strong>Destinataire :</strong> ${name}</p>
+            <p><strong>Téléphone :</strong> ${phone}</p>
+            <p><strong>Adresse de livraison :</strong> ${addr}, ${city} (${gov})</p>
+            <p><strong>Délai estimé :</strong> 2 à 4 jours ouvrés</p>
+            <p><strong>Mode de règlement :</strong> ${paymentLabel}</p>
+            <p style="border-top: 1px solid var(--color-border); margin-top: 8px; padding-top: 8px; font-weight: 700;">
+              <strong>Montant total dû :</strong> ${formatTND(total)}
+            </p>
+          </div>
+
+          <a href="#/" class="btn-action">CONTINUE SHOPPING</a>
+        </div>
+      `;
+    }
+
+    /* ==========================================================================
+       6. AUTRES PAGES (VIP, CONTACT, GUIDE TAILLE, TRACK PARCEL, ACCOUNT, LEGAL)
+       ========================================================================== */
+    function renderVIPPage() {
+      appMain.innerHTML = `
+        <div class="container text-page-wrap">
+          <h1 class="text-page-title">VIP ACCESS</h1>
+          <div class="text-content-body">
+            <p>Inscrivez-vous à la liste VIP d'AKIRA pour obtenir un accès anticipé de 15 minutes à tous nos drops et éditions limitées.</p>
+            <form onsubmit="handleVIPSubmit(event)" style="display: flex; flex-direction: column; gap: 14px; margin-top: 12px;">
+              <div class="form-group">
+                <label class="form-label" for="vipContact">E-mail ou Téléphone tunisien *</label>
+                <input type="text" id="vipContact" class="form-input" required placeholder="ex. contact@exemple.tn ou 98 123 456">
+              </div>
+              <button type="submit" class="btn-action" style="align-self: flex-start;">JOIN VIP LIST</button>
+            </form>
+            <p id="vipSuccessNotice" style="display: none; font-weight: 600; text-decoration: underline; margin-top: 12px;">Vous êtes inscrit sur la liste VIP AKIRA.</p>
+          </div>
+        </div>
+      `;
+    }
+
+    function handleVIPSubmit(e) {
+      e.preventDefault();
+      document.getElementById('vipSuccessNotice').style.display = 'block';
+      e.target.reset();
+    }
+
+    function renderContactPage() {
+      appMain.innerHTML = `
+        <div class="container text-page-wrap">
+          <h1 class="text-page-title">CONTACT</h1>
+          <div class="text-content-body">
+            <p>Pour toute question relative à vos commandes, échanges de tailles ou livraisons en Tunisie, notre service client est disponible du lundi au samedi.</p>
+            <p><strong>E-mail direct :</strong> contact@akira.tn</p>
+            <p><strong>Atelier :</strong> Tunis, Tunisie</p>
+
+            <form onsubmit="handleContactSubmit(event)" style="display: flex; flex-direction: column; gap: 14px; margin-top: 16px; border-top: 1px solid var(--color-border); padding-top: 20px;">
+              <div class="form-group">
+                <label class="form-label" for="contactName">Nom complet *</label>
+                <input type="text" id="contactName" class="form-input" required placeholder="Votre nom">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="contactEmail">E-mail ou Téléphone *</label>
+                <input type="text" id="contactEmail" class="form-input" required placeholder="Votre contact">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="contactMsg">Message *</label>
+                <textarea id="contactMsg" class="form-input" rows="4" style="height: auto; padding: 10px;" required placeholder="Votre demande..."></textarea>
+              </div>
+              <button type="submit" class="btn-action" style="align-self: flex-start;">SEND MESSAGE</button>
+            </form>
+            <p id="contactSuccessNotice" style="display: none; font-weight: 600; text-decoration: underline; margin-top: 12px;">Message envoyé. Nous vous répondrons sous 24h.</p>
+          </div>
+        </div>
+      `;
+    }
+
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      document.getElementById('contactSuccessNotice').style.display = 'block';
+      e.target.reset();
+    }
+
+    function renderSizeGuidePage() {
+      appMain.innerHTML = `
+        <div class="container text-page-wrap">
+          <h1 class="text-page-title">GUIDE DE TAILLE</h1>
+          <div class="text-content-body">
+            <p>Nos pièces possèdent des coupes streetwear déstructurées et amples (boxy / oversized fit). Si vous souhaitez une coupe standard plus ajustée, nous conseillons de choisir une taille en-dessous de votre taille habituelle.</p>
+            
+            <h3 style="font-size: 13px; text-transform: uppercase; margin-top: 12px;">Sweats & Hoodies (cm)</h3>
+            <table class="size-table">
+              <thead>
+                <tr>
+                  <th>Taille</th>
+                  <th>Largeur Poitrine</th>
+                  <th>Longueur Dos</th>
+                  <th>Longueur Manche</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>XS</td><td>58 cm</td><td>67 cm</td><td>60 cm</td></tr>
+                <tr><td>S</td><td>61 cm</td><td>69 cm</td><td>61 cm</td></tr>
+                <tr><td>M</td><td>64 cm</td><td>71 cm</td><td>62 cm</td></tr>
+                <tr><td>L</td><td>67 cm</td><td>73 cm</td><td>63 cm</td></tr>
+                <tr><td>XL</td><td>70 cm</td><td>75 cm</td><td>64 cm</td></tr>
+              </tbody>
+            </table>
+
+            <h3 style="font-size: 13px; text-transform: uppercase; margin-top: 18px;">Pantalons & Cargos (cm)</h3>
+            <table class="size-table">
+              <thead>
+                <tr>
+                  <th>Taille</th>
+                  <th>Tour de Taille</th>
+                  <th>Longueur Totale</th>
+                  <th>Ouverture Cheville</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>XS</td><td>74 cm</td><td>102 cm</td><td>23 cm</td></tr>
+                <tr><td>S</td><td>78 cm</td><td>104 cm</td><td>24 cm</td></tr>
+                <tr><td>M</td><td>82 cm</td><td>106 cm</td><td>25 cm</td></tr>
+                <tr><td>L</td><td>86 cm</td><td>108 cm</td><td>26 cm</td></tr>
+                <tr><td>XL</td><td>90 cm</td><td>110 cm</td><td>27 cm</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderTrackParcelPage() {
+      appMain.innerHTML = `
+        <div class="container text-page-wrap">
+          <h1 class="text-page-title">TRACK PARCEL</h1>
+          <div class="text-content-body">
+            <p>Entrez votre numéro de commande pour suivre l'acheminement de votre colis en Tunisie.</p>
+            <form onsubmit="handleTrackSubmit(event)" style="display: flex; gap: 8px; margin-top: 12px;">
+              <input type="text" id="trackInput" class="form-input" style="max-width: 300px;" required placeholder="ex. AK-849201">
+              <button type="submit" class="btn-action">TRACK</button>
+            </form>
+            <div id="trackResultBox" style="display: none; background-color: var(--color-gray-bg); border: 1px solid var(--color-border); padding: 18px; margin-top: 20px;">
+              <p style="font-weight: 600;">Statut : En cours d'expédition par le transporteur local</p>
+              <p style="color: var(--color-muted); margin-top: 4px;">Délai prévu : Livraison sous 24 à 48 heures ouvrables. Le livreur vous contactera par téléphone avant son passage.</p>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function handleTrackSubmit(e) {
+      e.preventDefault();
+      document.getElementById('trackResultBox').style.display = 'block';
+    }
+
+    function renderAccountPage() {
+      appMain.innerHTML = `
+        <div class="container text-page-wrap" style="text-align: center; padding: 60px 0;">
+          <h1 class="text-page-title" style="text-align: center;">MY ACCOUNT</h1>
+          <p style="color: var(--color-muted); margin-bottom: 16px;">L'espace compte client est actuellement en cours de mise à jour.</p>
+          <p style="font-size: 12px; margin-bottom: 24px;">Vos commandes en cours restent parfaitement enregistrées et suivies via notre service expédition.</p>
+          <a href="#/" class="btn-action">RETURN TO SHOP</a>
+        </div>
+      `;
+    }
+
+    function renderLegalPage(slug) {
+      const legalTitles = {
+        'notice': 'LEGAL NOTICE',
+        'terms-of-sale': 'TERMS OF SALE',
+        'terms-of-use': 'TERMS OF USE',
+        'refund-policy': 'REFUND POLICY',
+        'privacy-policy': 'PRIVACY POLICY'
+      };
+
+      const title = legalTitles[slug] || 'LEGAL';
+
+      appMain.innerHTML = `
+        <div class="container text-page-wrap">
+          <h1 class="text-page-title">${title}</h1>
+          <div class="text-content-body">
+            <p><strong>1. Éditeur du site</strong><br>Le site akira.tn est édité par AKIRA SARL, société immatriculée au Registre National des Entreprises de Tunis, Tunisie.</p>
+            <p><strong>2. Produits et confection</strong><br>Toutes les pièces proposées sur akira.tn sont produites en quantités limitées et confectionnées dans nos ateliers partenaires en Tunisie. Les spécifications et grammages indiqués reflètent les caractéristiques réelles des articles.</p>
+            <p><strong>3. Expédition et livraison</strong><br>Les livraisons s'effectuent sur l'ensemble des 24 gouvernorats tunisiens sous 2 à 4 jours ouvrés. Les frais s'élèvent à 8 TND et sont offerts pour tout achat égal ou supérieur à 300 TND.</p>
+            <p><strong>4. Retours et échanges</strong><br>Conformément aux usages du commerce en ligne, les échanges de taille sont possibles sous un délai de 7 jours ouvrables suivant la réception, à condition que le vêtement soit dans son état neuf avec ses étiquettes d'origine.</p>
+            <p><strong>5. Données personnelles</strong><br>Vos données de contact (nom, adresse, téléphone) sont collectées exclusivement afin d'assurer l'expédition et le suivi logistique de vos commandes en Tunisie.</p>
+          </div>
+        </div>
+      `;
+    }
+
+    /* ==========================================================================
+       FONCTIONNALITÉS COMPLÉMENTAIRES (SEARCH, MOBILE DRAWER, COOKIES, HEADER HIDE)
+       ========================================================================== */
+    // Panneau de recherche
+    const searchPanel = document.getElementById('searchPanel');
+    const searchOpenBtn = document.getElementById('searchOpenBtn');
+    const searchCloseBtn = document.getElementById('searchCloseBtn');
+    const searchClearBtn = document.getElementById('searchClearBtn');
+    const searchInput = document.getElementById('searchInput');
+    const searchResultsGrid = document.getElementById('searchResultsGrid');
+
+    searchOpenBtn.addEventListener('click', () => {
+      searchPanel.classList.add('open');
+      setTimeout(() => searchInput.focus(), 150);
+    });
+
+    function closeSearchPanel() {
+      searchPanel.classList.remove('open');
+    }
+    searchCloseBtn.addEventListener('click', closeSearchPanel);
+
+    searchClearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      searchResultsGrid.innerHTML = '';
+      searchInput.focus();
+    });
+
+    searchInput.addEventListener('input', (e) => {
+      const q = e.target.value.trim().toLowerCase();
+      if (!q) {
+        searchResultsGrid.innerHTML = '';
+        return;
+      }
+      const matches = PRODUCTS.filter(p => p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q));
+      if (matches.length === 0) {
+        searchResultsGrid.innerHTML = `<p style="grid-column: 1/-1; color: var(--color-muted); font-size: 12px;">No products found for "${q}".</p>`;
+      } else {
+        searchResultsGrid.innerHTML = matches.map(renderProductCardHTML).join('');
+      }
+    });
+
+    // Tiroir Mobile
+    const mobileDrawerOverlay = document.getElementById('mobileDrawerOverlay');
+    const mobileMenuOpenBtn = document.getElementById('mobileMenuOpenBtn');
+    const mobileMenuCloseBtn = document.getElementById('mobileMenuCloseBtn');
+
+    mobileMenuOpenBtn.addEventListener('click', () => {
+      mobileDrawerOverlay.classList.add('open');
+      document.body.classList.add('no-scroll');
+    });
+
+    function closeMobileDrawer() {
+      mobileDrawerOverlay.classList.remove('open');
+      document.body.classList.remove('no-scroll');
+    }
+    mobileMenuCloseBtn.addEventListener('click', closeMobileDrawer);
+    mobileDrawerOverlay.addEventListener('click', (e) => {
+      if (e.target === mobileDrawerOverlay) closeMobileDrawer();
+    });
+
+    // Cookies banner
+    function acceptCookies() {
+      const banner = document.getElementById('cookiesBanner');
+      if (banner) banner.style.display = 'none';
+    }
+
+    // Masquage du Header au scroll vers le bas
+    let lastScrollY = window.scrollY;
+    const siteHeader = document.getElementById('siteHeader');
+
+    window.addEventListener('scroll', () => {
+      const curY = window.scrollY;
+      if (curY > 80 && curY > lastScrollY) {
+        siteHeader.classList.add('header-hidden');
+      } else {
+        siteHeader.classList.remove('header-hidden');
+      }
+      lastScrollY = curY;
+    }, { passive: true });
+
+    // Touche Escape pour fermer les modales
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeSearchPanel();
+        closeMobileDrawer();
+      }
+    });
+
+    // Initialisation
+    document.addEventListener('DOMContentLoaded', () => {
+      router();
+      updateHeaderCartUI();
+    });
+  </script>
+</body>
+</html>

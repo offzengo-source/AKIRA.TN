@@ -1,0 +1,6 @@
+{
+  "name": "akira.tn — streetwear tunisie",
+  "description": "marque de streetwear tunisienne haut de gamme. pièces essentielles, coupes précises, conçu en tunisie.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
