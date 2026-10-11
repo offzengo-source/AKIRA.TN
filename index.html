@@ -1716,17 +1716,17 @@
        DONNÉES DU CATALOGUE AKIRA (20 PRODUITS RÉALISTES AVEC PHOTOS EXEMPLES)
        ========================================================================== -->
   <script>
-    // Photothèque réelle streetwear AKIRA monochrome
+    // Photothèque réelle streetwear AKIRA monochrome (chemins statiques publics)
     const IMGS = {
-      hero: '/src/assets/images/akira_hero_editorial_1791748641270.jpg',
-      hoodie: '/src/assets/images/akira_product_hoodie_1791748653674.jpg',
-      cargo: '/src/assets/images/akira_product_cargo_1791748664189.jpg',
-      craft: '/src/assets/images/akira_editorial_craft_1791748674132.jpg',
-      tshirt: '/src/assets/images/akira_photo_tshirt_1791750428985.jpg',
-      jacket: '/src/assets/images/akira_photo_jacket_1791750441283.jpg',
-      knit: '/src/assets/images/akira_photo_knit_1791750451087.jpg',
-      short: '/src/assets/images/akira_photo_short_1791750462538.jpg',
-      acc: '/src/assets/images/akira_photo_accessory_1791750472532.jpg'
+      hero: '/images/akira_hero_editorial_1791748641270.jpg',
+      hoodie: '/images/akira_product_hoodie_1791748653674.jpg',
+      cargo: '/images/akira_product_cargo_1791748664189.jpg',
+      craft: '/images/akira_editorial_craft_1791748674132.jpg',
+      tshirt: '/images/akira_photo_tshirt_1791750428985.jpg',
+      jacket: '/images/akira_photo_jacket_1791750441283.jpg',
+      knit: '/images/akira_photo_knit_1791750451087.jpg',
+      short: '/images/akira_photo_short_1791750462538.jpg',
+      acc: '/images/akira_photo_accessory_1791750472532.jpg'
     };
 
     const PRODUCTS = [
@@ -2029,6 +2029,31 @@
       return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
     }
 
+    // Gestionnaire de secours automatique pour garantir l'affichage des images partout (dev, production publiée, export)
+    function handleImgError(imgEl, fallbackTitle) {
+      if (!imgEl) return;
+      const step = imgEl._errStep || 0;
+      imgEl._errStep = step + 1;
+
+      const src = imgEl.getAttribute('src') || '';
+      const filename = src.split('/').pop().split('?')[0];
+
+      if (step === 0 && filename) {
+        // Essai 1: chemin relatif './images/'
+        imgEl.src = './images/' + filename;
+      } else if (step === 1 && filename) {
+        // Essai 2: chemin '/src/assets/images/'
+        imgEl.src = '/src/assets/images/' + filename;
+      } else if (step === 2 && filename) {
+        // Essai 3: chemin './src/assets/images/'
+        imgEl.src = './src/assets/images/' + filename;
+      } else {
+        // Secours final garanti sans jamais afficher d'icône d'image cassée
+        imgEl.onerror = null;
+        imgEl.src = generatePlaceholderSVG(fallbackTitle || 'AKIRA', 'PIÈCE CONÇUE À TUNIS');
+      }
+    }
+
     /* ==========================================================================
        ÉTAT DU PANIER EN MÉMOIRE (SANS LOCALSTORAGE)
        ========================================================================== */
@@ -2174,8 +2199,8 @@
         <a href="#/products/${p.id}" class="product-card">
           <div class="product-card-media">
             ${badgeHTML}
-            <img src="${p.images[0]}" alt="${p.name}" class="product-img" loading="lazy">
-            <img src="${p.images[1] || p.images[0]}" alt="${p.name} vue 2" class="product-img product-img-hover" loading="lazy">
+            <img src="${p.images[0]}" alt="${p.name}" class="product-img" loading="lazy" onerror="handleImgError(this, '${p.name.replace(/'/g, "\\'")}')">
+            <img src="${p.images[1] || p.images[0]}" alt="${p.name} vue 2" class="product-img product-img-hover" loading="lazy" onerror="handleImgError(this, '${p.name.replace(/'/g, "\\'")}')">
           </div>
           <div class="product-card-info">
             <h3 class="product-card-name">${p.name}</h3>
@@ -2198,7 +2223,7 @@
       appMain.innerHTML = `
         <!-- Grande bannière photo réelle de campagne -->
         <div class="home-hero-banner">
-          <img src="${IMGS.hero}" alt="Bannière AKIRA New Collection" class="home-hero-img" style="filter: grayscale(100%) contrast(110%) brightness(0.85);">
+          <img src="${IMGS.hero}" alt="Bannière AKIRA New Collection" class="home-hero-img" onerror="handleImgError(this, 'AKIRA NEW DROP')" style="filter: grayscale(100%) contrast(110%) brightness(0.85);">
           <div class="home-hero-content" style="background: rgba(0,0,0,0.4); padding: 24px 36px; border: 1px solid rgba(255,255,255,0.2); color: #fff;">
             <h1 style="font-size: 21px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #fff;">NEW COLLECTION</h1>
             <p style="font-size: 12px; margin-top: 6px; letter-spacing: 0.1em; color: #e5e5e5;">DESIGNED & ASSEMBLED IN TUNISIA</p>
@@ -2358,7 +2383,7 @@
               <div class="pdp-gallery-wrap" id="pdpGalleryWrap" onscroll="updateGalleryIndicator(this)">
                 ${product.images.map((img, idx) => `
                   <div class="pdp-gallery-item" data-index="${idx}">
-                    <img src="${img}" alt="${product.name} vue ${idx + 1}" loading="${idx === 0 ? 'eager' : 'lazy'}">
+                    <img src="${img}" alt="${product.name} vue ${idx + 1}" loading="${idx === 0 ? 'eager' : 'lazy'}" onerror="handleImgError(this, '${product.name.replace(/'/g, "\\'")}')">
                   </div>
                 `).join('')}
               </div>
@@ -2906,7 +2931,7 @@
           <div class="cart-items-list">
             ${cart.map((item, idx) => `
               <div class="cart-item-row">
-                <img src="${item.product.images[0]}" alt="${item.product.name}" class="cart-thumb">
+                <img src="${item.product.images[0]}" alt="${item.product.name}" class="cart-thumb" onerror="handleImgError(this, '${item.product.name.replace(/'/g, "\\'")}')">
                 <div>
                   <h3 class="cart-item-name">${item.product.name}</h3>
                   <p class="cart-item-meta">Size : ${item.size} · Unit : ${formatTND(item.product.price)}</p>

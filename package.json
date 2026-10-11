@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
-    "build": "vite build",
+    "prebuild": "mkdir -p public/images public/assets/images public/src/assets/images && cp -r src/assets/images/* public/images/ 2>/dev/null || true && cp -r src/assets/images/* public/assets/images/ 2>/dev/null || true && cp -r src/assets/images/* public/src/assets/images/ 2>/dev/null || true",
+    "build": "npm run prebuild && vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit"
